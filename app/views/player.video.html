@@ -1,0 +1,40 @@
+<div class="player-container">
+    <div class="title-container">
+        <h1 class="title mini" ui-sref="home"><img src="images/givago-logo.png" alt="Givago" /></h1>
+    </div>
+    <div class="player">
+        <div class="container player-video">
+
+            <div id="progress-bar" class="" role="alert">
+                <!--<div class="progress">
+                    <div class="progress-bar actual-progress" role="progressbar" style=""></div>
+                    <div class="progress-bar buffering" role="progressbar" style=""></div>
+                </div>-->
+            </div>
+
+            <div id="buffering-bar" class="" role="alert"></div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <span id="ytplayer" class=""></span>
+                </div>
+                <div class="col-md-4" style="text-align: left;">
+                    <div class="sponsor-description light-bg">
+                        <h2><img class="sponsor-logo" ng-src="{{ video.sponsor.logo.url }}" style="{{ video.sponsor.logo.style }}"></h2>
+
+                        <p class="sponsor-description-text">{{ video.sponsor.description }}</p>
+
+                        <span class="social-header">Links:</span>
+                        <ul class="sponsor-social list-inline">
+                            <li ng-repeat="link in video.sponsor.social" class="">
+                                <a href="{{ link.url }}" target="_blank" title="{{ video.sponsor.name }}">
+                                    <i class="fa fa-{{ link.type }}"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

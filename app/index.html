@@ -1,0 +1,272 @@
+<!doctype html>
+<html class="no-js" ng-app="givagoApp">
+<head>
+    <meta charset="utf-8">
+    <title>Givago</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/magic/magic.min.css" />
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-sweetalert/lib/sweet-alert.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-social/bootstrap-social.css" />
+    <link rel="stylesheet" href="bower_components/angular-motion/dist/angular-motion.css" />
+    <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+</head>
+<body>
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<div id="parallax-wrapper" class="">
+    <ul id="parallax-scene">
+        <li class="layer" data-depth="0.10"><div id="landscape1" class="landscape"></div></li>
+        <!--<li class="layer" data-depth="0.11"><div class="light"></div></li>-->
+        <!--<li class="layer" data-depth="0.11"><div class="title-container"><h1 class="title">Giv<span class="blue2">a</span>Go</h1></div></li>
+        <li class="layer" data-depth="0"><div class="title-container" style="margin-top: 80px"><h1 class="title"><img src="images/givago-logo.png" alt="Givago" /></h1></div></li>-->
+        <li class="layer" data-depth="0.10"><div class="tree2"></div></li>
+        <li class="layer" data-depth="0.15"><div class="tree1b"></div></li>
+        <!--<li class="layer" data-depth="0.15"><div class="tree1c"></div></li>-->
+        <li class="layer" data-depth="0.3"><div class="tree1"></div></li>
+
+        <li class="layer" data-depth="0.35"><div class="grass2"></div></li>
+        <li class="layer" data-depth="0.4"><div class="grass"></div></li>
+    </ul>
+</div>
+
+<div class="top-menu-container" ng-controller="MenuCtrl">
+    <div class="container">
+        <div class="top-left" dropdown is-open="status.isopen">
+
+            <div class="hello-user">
+                <span>{{currentUser.displayName}}</span>
+            </div>
+            <span class="fa-stack fa-2x user-logo dropdown-toggle" dropdown-toggle data-ng-click="openLoginModal()">
+              <i class="fa bg fa-circle fa-stack-2x"></i>
+              <i class="fa logo fa-user fa-stack-1x fa-inverse"></i>
+                <img ng-src="{{ userProfilePic }}" >
+            </span>
+            <ul class="dropdown-menu" role="menu" ng-show="isAuthenticated()">
+                <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
+                <li><a href="#"><i class="fa fa-sliders"></i> Settings</a></li>
+                <li class="divider"></li>
+                <li><a ng-click="logout()"><i class="fa fa-power-off"></i> Logout</a></li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div id="global-container" ui-view></div>
+
+<div class="footer container">
+    <p><span class="glyphicon glyphicon-heart"></span> from the Givago team</p>
+</div>
+
+<script type="text/ng-template" id="login.html">
+    <div class="modal-body" style="text-align: center" ng-show="mode == 'login'">
+        <h1 style="text-align: center; margin-bottom:20px;">Log in</h1>
+        <form name="loginform" ng-submit="login()" class="login-form" action="" method="POST">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input class="form-control" type="email" placeholder="Email" name="email" ng-model="email" required autofocus>
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input class="form-control" type="password" name="password" ng-model="password" placeholder="Password" required>
+            </div>
+
+            <input type="submit" ng-disabled="loginform.$invalid" class="btn btn-primary btn-block" value="Login" />
+        </form>
+
+        <p style="margin-top: 20px">
+            <!--<a href="">Forgot your password ?</a>
+            <br>-->
+            <small>Don't have an account yet? <a href="" ng-click="goToSignup()">Sign up</a></small></p>
+
+        <div class="signup-or-separator">
+            <h6 class="text">or</h6>
+            <hr>
+        </div>
+
+        <a class="btn btn-block btn-social btn-facebook" ng-click="authenticate('facebook')">
+            <i class="fa fa-facebook"></i>
+            Sign in with Facebook
+        </a>
+
+        <!--<a class="btn btn-block btn-social btn-google-plus" ng-click="authenticate('google')">
+            <i class="fa fa-google-plus"></i>
+            Sign in with Google
+        </a>
+
+        <a class="btn btn-block btn-social btn-twitter">
+            <i class="fa fa-twitter"></i>
+            Sign in with Twitter
+        </a>-->
+    </div>
+
+    <div class="modal-body" style="text-align: center" ng-show="mode == 'signup'">
+        <h1 style="text-align: center; margin-bottom:20px;">Sign up</h1>
+        <form method="post" ng-submit="signup()" name="signupForm" class="login-form">
+
+            <div class="form-group" show-errors="{ showSuccess: true }">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input class="form-control" name="displayName" ng-model="displayName" placeholder="Name" required autofocus>
+                </div>
+                <div class="help-block" ng-show="signupForm.displayName.$dirty && signupForm.displayName.$invalid">
+                    <p class="text-danger" ng-show="signupForm.displayName.$error.required">The user's name is required.</p>
+                </div>
+            </div>
+
+            <div class="form-group" show-errors="{ showSuccess: true }">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input class="form-control" type="email" id="email" name="email" ng-model="email" placeholder="Email" required
+                           ng-pattern="/^[A-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
+                </div>
+
+                <div class="help-block" ng-show="signupForm.email.$dirty && signupForm.email.$invalid">
+                    <p class="text-danger" ng-show="signupForm.email.$error.required">The user's email is required.</p>
+                    <p class="text-danger" ng-show="signupForm.email.$error.pattern">The email seems invalid.</p>
+                </div>
+            </div>
+
+            <div class="form-group" show-errors="{ showSuccess: true }">
+                <div class="input-group" ng-class="{ 'has-error' : signupForm.password.$invalid && signupForm.password.$dirty }">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input class="form-control" type="password" name="password" ng-model="password" placeholder="Password" required>
+                </div>
+
+                <div class="help-block" ng-show="signupForm.password.$dirty && signupForm.password.$invalid">
+                    <p class="text-danger" ng-show="signupForm.password.$error.required">Password is required.</p>
+                </div>
+            </div>
+
+            <div class="form-group" show-errors="{ showSuccess: true }">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input match="password" class="form-control" type="password" name="confirmPassword" ng-model="confirmPassword" placeholder="Confirm Password">
+                </div>
+
+                <div class="help-block" ng-show="signupForm.confirmPassword.$dirty && signupForm.confirmPassword.$invalid">
+                    <p class="text-danger" ng-show="signupForm.confirmPassword.$error.match">Password must match.</p>
+                </div>
+            </div>
+
+            <p style="margin: 20px 0"><small>By clicking on Sign up, you agree to <a>terms & conditions</a> and <a>privacy policy</a></small></p>
+
+            <input type="submit" ng-disabled="signupForm.$invalid" class="btn btn-primary btn-block" value="Sign up" />
+
+            <p style="margin: 20px 0">Already have an account? <a ng-click="goToLogin()">Log in now</a></p>
+        </form>
+    </div>
+</script>
+
+<!-- build:js(.) scripts/oldieshim.js -->
+<!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.js"></script>
+<![endif]-->
+<!-- endbuild -->
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/q/q.js"></script>
+<script src="bower_components/parallax/deploy/parallax.js"></script>
+<script src="bower_components/parallax/deploy/parallax.min.js"></script>
+<script src="bower_components/parallax/deploy/jquery.parallax.js"></script>
+<script src="bower_components/parallax/deploy/jquery.parallax.min.js"></script>
+<script src="bower_components/angular-scroll/angular-scroll.min.js"></script>
+<script src="bower_components/angular-growl-notifications/dist/angular-growl-notifications.js"></script>
+<script src="bower_components/angular-facebook/lib/angular-facebook.js"></script>
+<script src="bower_components/ngstorage/ngStorage.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/bootstrap-sweetalert/lib/sweet-alert.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/satellizer/satellizer.js"></script>
+<script src="bower_components/angular-strap/dist/angular-strap.js"></script>
+<script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/progressbar.js/dist/progressbar.js"></script>
+<script src="bower_components/toastr/toastr.js"></script>
+<script src="bower_components/angular-bootstrap-show-errors/src/showErrors.js"></script>
+<script src="bower_components/angular-validation-match/dist/angular-input-match.min.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<script src="https://www.youtube.com/player_api"></script>
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/services/account.js"></script>
+<script src="scripts/services/video.js"></script>
+<script src="scripts/directives/passwordMatch.js"></script>
+<script src="scripts/directives/passwordStrengh.js"></script>
+<script src="scripts/controllers/home.js"></script>
+<script src="scripts/controllers/menu.js"></script>
+<script src="scripts/controllers/player.js"></script>
+<script src="scripts/controllers/mosaic.js"></script>
+<script src="scripts/controllers/modal.js"></script>
+<!-- endbuild -->
+
+<script>
+    var doResize = function() {
+        $('#parallax-wrapper').height($(window).height());
+
+        var getSceneMargin = -($('#parallax-scene').css('marginTop').replace("px", "") * 2);
+
+        $('#parallax-scene > li > div').each(function(){
+            $(this).width(($(window).width() + getSceneMargin)); //* ($(this).parent().attr('data-depth') + 1));
+            $(this).height(($(window).height() + getSceneMargin)); //* ($(this).parent().attr('data-depth') + 1));
+        });
+
+        $('#top-menu').affix({
+            offset: {
+                top: function() {
+                    return $(window).height()
+                }
+            }
+        });
+    }
+
+    $(window).resize(doResize);
+    doResize();
+
+    /*$('#parallax-scene').parallax({
+        scalarX: 10,
+        scalarY: 15
+    });*/
+</script>
+</body>
+</html>

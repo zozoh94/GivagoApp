@@ -1,11 +1,13 @@
 angular.module('givagoApp')
-    .controller('HomeCtrl', function ($scope, $sce, $q, $document){
+    .controller('HomeCtrl', function ($rootScope, $scope, $sce, $q, $document){
 
         $scope.gifts = [
-            {id: 'tree', name: 'Plant a tree', icon: 'tree'},
-            {id: 'food', name: 'Feed someone', icon: 'spoon'},
-            {id: 'water', name: 'Give a drink', icon: 'tint'}
+            {name: 'Tree', icon: 'glyphicon glyphicon-tree-deciduous fa-stack-1x'},
+            {name: 'Food', icon: 'fa fa-spoon fa-stack-1x'},
+            {name: 'Water', icon: 'fa fa-tint fa-stack-1x'}
         ];
+
+
 
         $scope.scrollToContent = function()
         {

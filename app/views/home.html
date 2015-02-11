@@ -9,7 +9,7 @@
         <div class="player-selection">
             <span class="fa-stack fa-5x" ng-repeat="gift in gifts" ui-sref="mosaic({gift: gift.id})">
                 <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-{{ gift.icon }} fa-stack-1x"></i>
+                <i class="{{ gift.icon }}"></i>
                 <span class="player-label shadow1">{{ gift.name }}</span>
             </span>
             <span class="know-more shadow1" ng-click="scrollToContent()">Know more <i class="fa fa-angle-down"></i></span>
@@ -17,7 +17,7 @@
     </div>
 </div>
 
-<div id="content-container" class="container content-container text-center light-bg">
+<div id="content-container" class="container content-container text-center light-bg2">
     <h2>Ethical advertising company</h2>
     <p>Givago is a social enterprise. We use advertisements to fund humanitarian and ecological projects.</p>
 

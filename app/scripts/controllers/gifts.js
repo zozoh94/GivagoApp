@@ -2,9 +2,9 @@ angular.module('givagoApp')
     .controller('GiftsCtrl', function ($scope)
     {
         $scope.gifts = [
-            {name: 'Plant a tree', icon: 'tree'},
-            {name: 'Feed someone', icon: 'spoon'},
-            {name: 'Give a drink', icon: 'tint'}
+            {name: 'Tree', icon: 'glyphicon glyphicon-tree-deciduous'},
+            {name: 'Food', icon: 'fa fa-spoon fa-stack-1x'},
+            {name: 'Water', icon: 'fa fa-tint fa-stack-1x'}
             //{name: 'Educate', icon: 'mortar-board'},
         ];
     }

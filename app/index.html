@@ -27,7 +27,7 @@
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div id="parallax-wrapper" class="">
+<div id="parallax-wrapper" class="" ng-controller="ParallaxCtrl">
     <ul id="parallax-scene">
         <li class="layer" data-depth="0.10"><div id="landscape1" class="landscape"></div></li>
         <!--<li class="layer" data-depth="0.11"><div class="light"></div></li>-->
@@ -233,6 +233,7 @@
 <script src="scripts/services/video.js"></script>
 <script src="scripts/directives/passwordMatch.js"></script>
 <script src="scripts/directives/passwordStrengh.js"></script>
+<script src="scripts/controllers/parallax.js"></script>
 <script src="scripts/controllers/home.js"></script>
 <script src="scripts/controllers/menu.js"></script>
 <script src="scripts/controllers/player.js"></script>
@@ -240,33 +241,5 @@
 <script src="scripts/controllers/modal.js"></script>
 <!-- endbuild -->
 
-<script>
-    var doResize = function() {
-        $('#parallax-wrapper').height($(window).height());
-
-        var getSceneMargin = -($('#parallax-scene').css('marginTop').replace("px", "") * 2);
-
-        $('#parallax-scene > li > div').each(function(){
-            $(this).width(($(window).width() + getSceneMargin)); //* ($(this).parent().attr('data-depth') + 1));
-            $(this).height(($(window).height() + getSceneMargin)); //* ($(this).parent().attr('data-depth') + 1));
-        });
-
-        $('#top-menu').affix({
-            offset: {
-                top: function() {
-                    return $(window).height()
-                }
-            }
-        });
-    }
-
-    $(window).resize(doResize);
-    doResize();
-
-    /*$('#parallax-scene').parallax({
-        scalarX: 10,
-        scalarY: 15
-    });*/
-</script>
 </body>
 </html>

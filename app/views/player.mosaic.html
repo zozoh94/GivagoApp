@@ -1,21 +1,26 @@
 <div class="player-container">
-    <div class="title-container">
-        <h1 class="title mini" ui-sref="home"><img src="images/givago-logo.png" alt="Givago" /></h1>
+  <div class="title-container">
+    <h1 class="title mini" ui-sref="home"><img src="images/givago-logo.png" alt="Givago" /></h1>
+  </div>
+  <div class="player">
+    <div class="container player-mosaic">
+      <div class="col-md-8 col-md-offset-2">
+        <ul class="list-unstyled video-list-thumbs row">
+          <li ng-repeat="ad in ads" class="col-md-6">
+            <a title="{{ ad.name }}" ng-click="clickOnMosaic()" ui-sref="player({ gift: uiRouterState.params.gift, ad : ad.id })">
+              <img class="video-preview img-responsive" ng-src="{{ ad.video.thumbnail }}" />
+              <span class="glyphicon glyphicon-play-circle"></span>
+              <span class="video-title">{{ ad.name }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="clearfix"></div>
     </div>
-    <div class="player">
-        <div class="container player-mosaic">
-            <div class="col-md-8 col-md-offset-2">
-                <ul class="list-unstyled video-list-thumbs row">
-                    <li ng-repeat="video in videos" class="col-md-6">
-                        <a title="{{ video.tag }}" ng-click="clickOnMosaic()" ui-sref="player({ gift: uiRouterState.params.gift, partner: video.sponsor.id })">
-                            <img class="video-preview img-responsive" src="http://img.youtube.com/vi/{{ video.ytid }}/{{ video.thumb }}.jpg" />
-                            <span class="glyphicon glyphicon-play-circle"></span>
-                            <span class="video-title">{{ video.tag }}</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="clearfix"></div>
-        </div>
+    <div class="row">
+      <div class="col-md-9 col-md-offset-3">
+	<pagination total-items="totalPages" ng-model="currentPage" ng-change="pageChanged()" items-per-page="sizePage" boundary-links="true"></pagination>
+      </div>
     </div>
+  </div>
 </div>

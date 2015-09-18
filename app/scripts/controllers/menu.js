@@ -8,7 +8,7 @@
  * Controller of the givagoApp
  */
 angular.module('givagoApp')
-    .controller('MenuCtrl', function ($scope, $rootScope, $window, $auth, $modal, $log, Account) {
+    .controller('MenuCtrl', function ($scope, $rootScope, $window, $auth, $log, account) {
 
         $scope.isAuthenticated = function() {
             return $auth.isAuthenticated();
@@ -17,7 +17,7 @@ angular.module('givagoApp')
         $scope.getProfile = function() {
             $log.info('Get user profile');
 
-            Account.getProfile()
+            account.getProfile()
                 .success(function(response) {
                     $log.info(response);
 
@@ -32,7 +32,7 @@ angular.module('givagoApp')
 
         $scope.openLoginModal = function (size)
         {
-            Account.openLoginModal($scope);
+            account.openLoginModal($scope);
         };
 
         /**
@@ -62,7 +62,7 @@ angular.module('givagoApp')
         $scope.updateProfile = function() {
             $log.info('Update profile');
 
-            Account.updateProfile({
+            account.updateProfile({
                 displayName: $scope.user.displayName,
                 email: $scope.user.email
             }).then(function() {

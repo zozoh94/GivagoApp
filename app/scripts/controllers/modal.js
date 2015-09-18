@@ -1,85 +1,87 @@
+'use strict';
+
 angular.module('givagoApp')
-    .controller('ModalCtrl', function ($rootScope, $scope, $auth, $window, $log, Account){
+  .controller('ModalCtrl', function ($rootScope, $scope, $auth, $window, $log, $location, account, ajax){
 
-        $scope.mode = 'login';
+    $scope.mode = 'login';
 
-        $scope.authenticate = function(provider) {
-            Account.authenticate(provider, $scope, $rootScope);
-        };
+    $scope.authenticate = function(provider) {
+      account.authenticate(provider, $scope, $rootScope);
+    };
 
-        $scope.isAuthenticated = function() {
-            return $auth.isAuthenticated();
-        };
+    $scope.isAuthenticated = function() {
+      return $auth.isAuthenticated();
+    };
 
-        $scope.goToSignup = function(){
-            $scope.mode = 'signup';
-        }
+    $scope.goToSignup = function(){
+      $scope.mode = 'signup';
+    }
 
-        $scope.goToLogin = function(){
-            $scope.mode = 'login';
-        }
+    $scope.goToLogin = function(){
+      $scope.mode = 'login';
+    }
 
-        /*$scope.signup = function() {
-            var user = {
-                email: $scope.email,
-                password: $scope.password
-            };
+    $scope.goToReset = function(){
+      $scope.mode = 'reset';
+    }
+    
+    $scope.login = function() {
+      $auth.login({ username: $scope.username, password: $scope.password })
+        .then(function(response) {
 
-            // Satellizer
-            $auth.signup(user)
-                .catch(function(response) {
-                    console.log(response.data);
-                });
-        };*/
+          if(typeof response.data.username != 'undefined'){
+            $window.localStorage.currentUser = JSON.stringify(response.data);
+            $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
+          } else {
+            $scope.getProfile();
+          }
 
-        $scope.login = function() {
-            $auth.login({ email: $scope.email, password: $scope.password })
-                .then(function(response) {
+          toastr["success"]('You have successfully logged in');
+        })
+        .catch(function(response) {
+	  angular.forEach(response.data.non_field_errors, function(value) {
+	    toastr["error"](value);
+	  });
+        });
+    };
 
-                    if(typeof response.data.user != 'undefined'){
-                        $window.localStorage.currentUser = JSON.stringify(response.data.user);
-                        $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
-                    } else {
-                        $scope.getProfile();
-                    }
+    $scope.signup = function() {
+      $auth.signup({
+        username: $scope.username,
+        email: $scope.email,
+        password1: $scope.password,
+	password2: $scope.confirmPassword
+      }).success(function(response) {
+	toastr["success"]("Account created.");
+	$scope.goToLogin();
+      })
+	.catch(function(response) {
+	  if(angular.isObject(response.data)) {
+            angular.forEach(response.data, function(value) {
+	      angular.forEach(value, function(message) {
+		toastr["error"](message);
+              });
+	    });
+	  }
+	});
+    };
 
-                    toastr["success"]('You have successfully logged in');
-                })
-                .catch(function(response) {
-                    toastr["error"](response.data.message);
-                });
-        };
+    $scope.reset = function() {
+      ajax.reset($scope.email).success(function(data) {
+	toastr.success(data.success);
+	$scope.goToLogin();
+      });
+    };
 
-        $scope.signup = function() {
-            $auth.signup({
-                displayName: $scope.displayName,
-                email: $scope.email,
-                password: $scope.password
-            }).catch(function(response) {
-                if (typeof response.data.message === 'object') {
-                    angular.forEach(response.data.message, function(message) {
-                        toastr["error"](message[0]);
-                    });
-                } else {
-                    toastr["error"](response.data.message);
-                }
-            });
-        };
+    $scope.getProfile = function() {
+      account.getProfile()
+        .success(function(response) {
+          $window.localStorage.currentUser = JSON.stringify(response);
+          $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
+        })
+        .error(function(error) {
+          toastr["error"](error.message);
+        });
+    };
 
-        $scope.getProfile = function() {
-            $log.info('Get user profile');
-
-            Account.getProfile()
-                .success(function(response) {
-                    $log.info(response);
-
-                    $window.localStorage.currentUser = JSON.stringify(response);
-                    $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
-
-                })
-                .error(function(error) {
-                    toastr["error"](error.message);
-                });
-        };
-
-    });
+  });

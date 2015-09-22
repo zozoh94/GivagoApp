@@ -36,6 +36,15 @@ angular
       url: apiUrl + '/auth/facebook/',
       clientId: '427235487450804'
     });
+
+    $authProvider.google({
+      url: apiUrl + '/auth/google/',
+      clientId: '406053578965-00djbfv54okleuqarfk4aaoqatg2b1k7.apps.googleusercontent.com'
+    });
+
+    $authProvider.twitter({
+      url: apiUrl + '/auth/twitter/'
+    });
     
     $authProvider.loginUrl = apiUrl + '/auth/login/';
     $authProvider.signupUrl = apiUrl + '/auth/registration/';

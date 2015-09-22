@@ -10,10 +10,12 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/angular-motion/dist/angular-motion.css" />
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
     <link rel="stylesheet" href="bower_components/bootstrap-social/bootstrap-social.css" />
     <link rel="stylesheet" href="bower_components/bootstrap-sweetalert/lib/sweet-alert.css" />
-    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
     <link rel="stylesheet" href="bower_components/magic/magic.min.css" />
+    <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css" />
+    <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
     <!-- endbower -->
     <!-- endbuild -->
@@ -53,7 +55,7 @@
           </span>
           <ul class="dropdown-menu" role="menu" ng-show="isAuthenticated()">
             <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
-            <li><a href="#"><i class="fa fa-sliders"></i> Settings</a></li>
+            <li><a ng-click="openSettingsModal()"><i class="fa fa-sliders"></i> Settings</a></li>
             <li class="divider"></li>
             <li><a ng-click="logout()"><i class="fa fa-power-off"></i> Logout</a></li>
           </ul>
@@ -67,6 +69,16 @@
     <div class="footer container">
       <p><span class="glyphicon glyphicon-heart"></span> from the Givago team</p>
     </div>
+    
+    <script type="text/ng-template" id="settings.html">
+      <div class="modal-body" style="text-align: center">
+        <h2 style="text-align: center; margin-bottom:20px;">Settings</h2>
+	<p>You can add some interests to your profile in order to get connected with the members sharing the same interest! Let's create a strong community!</p>
+	<tags-input ng-model="interest" on-tag-adding="addTag($tag)" on-tag-removing="removeTag($tag)">
+	  <auto-complete source="loadTags($query)"></auto-complete>
+	</tags-input>
+      </div>
+    </script>
 
     <script type="text/ng-template" id="login.html">
       <div class="modal-body" style="text-align: center" ng-show="mode == 'login'">
@@ -94,13 +106,13 @@
           <h6 class="text">or</h6>
           <hr>
         </div>
-
+	
         <a class="btn btn-block btn-social btn-facebook" ng-click="authenticate('facebook')">
           <i class="fa fa-facebook"></i>
           Sign in with Facebook
         </a>
 
-        <a class="btn btn-block btn-social btn-google-plus" ng-click="authenticate('google')">
+        <!--<a class="btn btn-block btn-social btn-google-plus" ng-click="authenticate('google')">
           <i class="fa fa-google-plus"></i>
           Sign in with Google
         </a>
@@ -108,7 +120,7 @@
         <a class="btn btn-block btn-social btn-twitter">
           <i class="fa fa-twitter"></i>
           Sign in with Twitter
-        </a>
+        </a>-->
       </div>
 
       <div class="modal-body" style="text-align: center" ng-show="mode == 'reset'">
@@ -128,7 +140,6 @@
 	  <input type="submit" ng-disabled="resetForm.$invalid" class="btn btn-primary btn-block" value="Send an email" />
         </form>
       </div>
-
       
       <div class="modal-body" style="text-align: center" ng-show="mode == 'signup'">
         <h2 style="text-align: center; margin-bottom:20px;">Sign up</h2>
@@ -228,6 +239,7 @@
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
     <script src="bower_components/bootstrap-sweetalert/lib/sweet-alert.js"></script>
+    <script src="bower_components/ng-tags-input/ng-tags-input.min.js"></script>
     <script src="bower_components/ngstorage/ngStorage.js"></script>
     <script src="bower_components/parallax/deploy/parallax.js"></script>
     <script src="bower_components/parallax/deploy/parallax.min.js"></script>
@@ -254,6 +266,7 @@
     <script src="scripts/controllers/modal.js"></script>
     <script src="scripts/controllers/verify-email.js"></script>
     <script src="scripts/controllers/reset.js"></script>
+    <script src="scripts/controllers/settings.js"></script>
     <!-- endbuild -->
 
   </body>

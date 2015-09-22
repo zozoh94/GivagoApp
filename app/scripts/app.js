@@ -24,15 +24,19 @@ angular
     'ui.router',
     'ui.bootstrap.showErrors',
     'validation.match',
-    'youtube-embed'
+    'youtube-embed',
+    'ngTagsInput'
   ])
 
   .constant('apiUrl', apiUrl)
 
   .config(function($authProvider) {
 
-    $authProvider.httpInterceptor = true; // Add Authorization header to HTTP request
-    $authProvider.loginOnSignup = true;
+    $authProvider.facebook({
+      url: apiUrl + '/auth/facebook/',
+      clientId: '427235487450804'
+    });
+    
     $authProvider.loginUrl = apiUrl + '/auth/login/';
     $authProvider.signupUrl = apiUrl + '/auth/registration/';
     $authProvider.loginRoute = '/login';

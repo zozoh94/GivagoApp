@@ -47,10 +47,10 @@ angular.module('givagoApp')
 
     $scope.signup = function() {
       $auth.signup({
-        username: $scope.username,
-        email: $scope.email,
-        password1: $scope.password,
-	password2: $scope.confirmPassword
+        'username': $scope.username,
+        'email': $scope.email,
+        'password1': $scope.password,
+	'password2': $scope.confirmPassword	
       }).success(function(response) {
 	toastr["success"]("Account created.");
 	$scope.goToLogin();

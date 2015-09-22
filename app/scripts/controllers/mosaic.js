@@ -8,11 +8,11 @@ angular.module('givagoApp')
 
     var loadAds = function(){
       $scope.loading = true;
-      ajax.ads($scope.currentPage).success(function(data){
-	$scope.ads = data.results;
-	$scope.totalPages = data.count;
-	$scope.sizePage = data.page_size;
-	$scope.loading = false;
+      ajax.ads(/*$scope.currentPage*/).success(function(data){
+	$scope.ads = data;
+	//$scope.totalPages = data.count;
+	//$scope.sizePage = data.page_size;
+	//$scope.loading = false;
       });
     };
 

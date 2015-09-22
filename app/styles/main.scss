@@ -3,10 +3,11 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
-@import url(http://fonts.googleapis.com/css?family=PT+Sans);
+//@import url(http://fonts.googleapis.com/css?family=PT+Sans);
+@import url(https://fonts.googleapis.com/css?family=Raleway);
 
 body {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'Raleway', sans-serif;
   color: #333;
   font-size: 1.6em;
   background: url("../images/skulls.png");

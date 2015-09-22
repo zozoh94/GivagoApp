@@ -24,6 +24,7 @@
     "fontawesome": "~4.2.0",
     "json3": "~3.3.1",
     "magic": "~1.0.0",
+    "ng-tags-input": "v2.3.0",
     "ngstorage": "~0.3.0",
     "parallax": "~2.1.3",
     "progressbar.js": "~0.7.0",

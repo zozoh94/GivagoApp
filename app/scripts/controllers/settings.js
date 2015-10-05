@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * @ngdoc function
+ * @name givagoApp.controller:SettingsCtrl
+ * @description
+ * # SettingsCtrl
+ * Controller of the givagoApp settings
+ */
 angular.module('givagoApp')
   .controller('SettingsCtrl', function ($scope, $q, ajax){
     ajax.interest().success(function(data) {      
@@ -11,18 +18,20 @@ angular.module('givagoApp')
     });
     $scope.addTag = function(tag) {
       ajax.addInterest(tag.text).success(function(data) {
-	if(data.status == "ok")
+	if(data.status === 'ok') {
 	  return true;
-	else
+	} else {
 	  return false;
+	}
       }).error(function() { return false; });
     };
     $scope.removeTag = function(tag) {
       ajax.removeInterest(tag.text).success(function(data) {
-	if(data.status == "ok")
+	if(data.status === 'ok') {
 	  return true;
-	else
+	} else {
 	  return false;
+	}
       }).error(function() { return false; });
     };
     $scope.loadTags = function(query) {

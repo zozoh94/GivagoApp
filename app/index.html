@@ -9,13 +9,13 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/angular-motion/dist/angular-motion.css" />
+    <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
     <link rel="stylesheet" href="bower_components/bootstrap-social/bootstrap-social.css" />
     <link rel="stylesheet" href="bower_components/bootstrap-sweetalert/lib/sweet-alert.css" />
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
     <link rel="stylesheet" href="bower_components/magic/magic.min.css" />
     <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css" />
-    <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -53,7 +53,7 @@
             <img ng-src="{{ userProfilePic }}" >
           </span>
           <ul class="dropdown-menu" role="menu" ng-show="isAuthenticated()">
-            <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
+            <li><a ui-sref="profile"><i class="fa fa-user"></i> My Account</a></li>
             <li><a ng-click="openSettingsModal()"><i class="fa fa-sliders"></i> Settings</a></li>
             <li class="divider"></li>
             <li><a ng-click="logout()"><i class="fa fa-power-off"></i> Logout</a></li>
@@ -65,9 +65,36 @@
 
     <div id="global-container" ui-view></div>
 
-    <div class="footer container">
-      <p><span class="glyphicon glyphicon-heart"></span> from the Givago team</p>
-    </div>
+    <script type="text/ng-template" id="reset.html">
+      <div class="modal-body" style="text-align: center">
+        <h2 style="text-align: center; margin-bottom:20px;">Reset your password</h2>
+	<form name="resetForm" ng-submit="resetConfirm()" class="login-form" action="" method="POST">
+	  <div class="form-group" show-errors="{ showSuccess: true }">
+            <div class="input-group" ng-class="{ 'has-error' : resetForm.password.$invalid && resetForm.password.$dirty }">
+              <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+              <input class="form-control" type="password" name="password" ng-model="password" placeholder="Password" required>
+            </div>
+
+            <div class="help-block" ng-show="resetForm.password.$dirty && resetForm.password.$invalid">
+              <p class="text-danger" ng-show="resetForm.password.$error.required">Password is required.</p>
+            </div>
+          </div>
+
+          <div class="form-group" show-errors="{ showSuccess: true }">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+              <input match="password" class="form-control" type="password" name="confirmPassword" ng-model="confirmPassword" placeholder="Confirm Password">
+            </div>
+
+            <div class="help-block" ng-show="resetForm.confirmPassword.$dirty && resetForm.confirmPassword.$invalid">
+              <p class="text-danger" ng-show="resetForm.confirmPassword.$error.match">Password must match.</p>
+            </div>
+          </div>
+	  <input type="submit" ng-disabled="resetForm.$invalid" class="btn btn-primary btn-block" value="Reset" />
+	</form>
+	<a href="/">Back to the homepage</a>
+      </div>
+    </script>
     
     <script type="text/ng-template" id="settings.html">
       <div class="modal-body" style="text-align: center">
@@ -116,9 +143,9 @@
           Sign in with Google
         </a>
 
-        <a class="btn btn-block btn-social btn-twitter" ng-click="authenticate('twitter')">
-          <i class="fa fa-twitter"></i>
-          Sign in with Twitter
+	<a class="btn btn-block btn-social btn-twitter" ng-click="authenticate('linkedin')">
+          <i class="fa fa-linkedin"></i>
+          Sign in with LinkedIn
         </a>
       </div>
 
@@ -149,8 +176,9 @@
               <span class="input-group-addon"><i class="fa fa-user"></i></span>
               <input class="form-control" name="username" ng-model="username" placeholder="Username" required autofocus>
             </div>
-            <div class="help-block" ng-show="signupForm.username.$dirty && signupForm.displayName.$invalid">
+            <div class="help-block" ng-show="errors.username || signupForm.username.$dirty && signupForm.displayName.$invalid">
               <p class="text-danger" ng-show="signupForm.username.$error.required">The user's name is required.</p>
+	      <p class="text-danger" ng-repeat="error in errors.username">{{ error }}</p>
             </div>
           </div>
 
@@ -161,9 +189,10 @@
                      ng-pattern="/^[A-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
             </div>
 
-            <div class="help-block" ng-show="signupForm.email.$dirty && signupForm.email.$invalid">
+            <div class="help-block" ng-show="errors.email || signupForm.email.$dirty && signupForm.email.$invalid">
               <p class="text-danger" ng-show="signupForm.email.$error.required">The user's email is required.</p>
               <p class="text-danger" ng-show="signupForm.email.$error.pattern">The email seems invalid.</p>
+	      <p class="text-danger" ng-repeat="error in errors.email">{{ error }}</p>
             </div>
           </div>
 
@@ -173,8 +202,9 @@
               <input class="form-control" type="password" name="password" ng-model="password" placeholder="Password" required>
             </div>
 
-            <div class="help-block" ng-show="signupForm.password.$dirty && signupForm.password.$invalid">
+            <div class="help-block" ng-show="errors.password1 || signupForm.password.$dirty && signupForm.password.$invalid">
               <p class="text-danger" ng-show="signupForm.password.$error.required">Password is required.</p>
+	      <p class="text-danger" ng-repeat="error in errors.password1">{{ error }}</p>
             </div>
           </div>
 
@@ -184,8 +214,9 @@
               <input match="password" class="form-control" type="password" name="confirmPassword" ng-model="confirmPassword" placeholder="Confirm Password">
             </div>
 
-            <div class="help-block" ng-show="signupForm.confirmPassword.$dirty && signupForm.confirmPassword.$invalid">
+            <div class="help-block" ng-show="errors.password2 || signupForm.confirmPassword.$dirty && signupForm.confirmPassword.$invalid">
               <p class="text-danger" ng-show="signupForm.confirmPassword.$error.match">Password must match.</p>
+	      <p class="text-danger" ng-repeat="error in erros.password2">{{ error }}</p>
             </div>
           </div>
 
@@ -221,6 +252,7 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
     <script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+    <script src="bower_components/angular-toastr/dist/angular-toastr.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-validation-match/dist/angular-input-match.min.js"></script>
@@ -247,7 +279,6 @@
     <script src="bower_components/progressbar.js/dist/progressbar.js"></script>
     <script src="bower_components/q/q.js"></script>
     <script src="bower_components/satellizer/satellizer.js"></script>
-    <script src="bower_components/toastr/toastr.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -266,6 +297,7 @@
     <script src="scripts/controllers/verify-email.js"></script>
     <script src="scripts/controllers/reset.js"></script>
     <script src="scripts/controllers/settings.js"></script>
+    <script src="scripts/controllers/profile.js"></script>
     <!-- endbuild -->
 
   </body>

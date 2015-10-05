@@ -1,38 +1,45 @@
 'use strict';
 
-angular.module('givagoApp')
-  .controller('MosaicCtrl', function ($scope, $state, $auth, ajax, account){
+/**
+ * @ngdoc function
+ * @name givagoApp.controller:MosaicCtrl
+ * @description
+ * # MosaicCtrl
+ * Controller of the givagoApp ads mosaic
+ */
+angular.module('givagoApp').controller('MosaicCtrl', function ($scope, $state, $auth, ajax, account, toastr){
 
-    $scope.currentPage = 1;
-    $scope.totalPages = 0;
+  $scope.currentPage = 1;
+  $scope.totalPages = 0;
 
-    var loadAds = function(){
-      $scope.loading = true;
-      ajax.ads(/*$scope.currentPage*/).success(function(data){
-	$scope.ads = data;
-	//$scope.totalPages = data.count;
-	//$scope.sizePage = data.page_size;
-	//$scope.loading = false;
-      });
-    };
-
-    $scope.pageChanged = function(){
-      loadAds();
-    };
-
-    loadAds();
-    
-    $scope.uiRouterState = $state;
-
-    $scope.$on('account::authenticated', function() {
-	loadAds();
-        toastr["info"]("Now you can select a video you'd like to watch!");
+  var loadAds = function(){
+    $scope.loading = true;
+    ajax.ads(/*$scope.currentPage*/).success(function(data){
+      $scope.ads = data;
+      //$scope.totalPages = data.count;
+      //$scope.sizePage = data.page_size;
+      //$scope.loading = false;
     });
+  };
 
-    $scope.clickOnMosaic = function(){
-      if(!$auth.isAuthenticated())
-        return account.openLoginModal($scope);
-    };
+  $scope.pageChanged = function(){
+    loadAds();
+  };
 
-    return account.openLoginModal($scope);
+  loadAds();
+  
+  $scope.uiRouterState = $state;
+
+  $scope.$on('account::authenticated', function() {
+    loadAds();
+    toastr.info('Now you can select a video you\'d like to watch!');
   });
+
+  $scope.clickOnMosaic = function(){
+    if(!$auth.isAuthenticated()) {
+      return account.openLoginModal($scope);
+    }
+  };
+
+  return account.openLoginModal($scope);
+});

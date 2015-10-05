@@ -3,7 +3,7 @@
 angular.module('givagoApp')
   .factory('ajax', function ($http, apiUrl) {
     return {
-      ads: function(page) {
+      ads: function(/*page*/) {
         return $http.get(apiUrl+'/ad/');//?page='+page);
       },
       ad: function(id) {
@@ -35,6 +35,12 @@ angular.module('givagoApp')
       },
       tag: function(query) {
 	return $http.get(apiUrl+'/tag/', {params : { query : query }});
+      },
+      changePassword: function(password1, password2, oldPassword) {
+	return $http.post(apiUrl+'/auth/password/change/', { 'new_password1' : password1, 'new_password2' : password2, 'old_password' : oldPassword });
+      },
+      editProfile: function(username, email) {
+	return $http.put(apiUrl+'/auth/user/', {username : username, email : email });
       }
     };
   });

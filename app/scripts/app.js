@@ -25,7 +25,8 @@ angular
     'ui.bootstrap.showErrors',
     'validation.match',
     'youtube-embed',
-    'ngTagsInput'
+    'ngTagsInput',
+    'toastr'
   ])
 
   .constant('apiUrl', apiUrl)
@@ -42,8 +43,9 @@ angular
       clientId: '406053578965-00djbfv54okleuqarfk4aaoqatg2b1k7.apps.googleusercontent.com'
     });
 
-    $authProvider.twitter({
-      url: apiUrl + '/auth/twitter/'
+    $authProvider.linkedin({
+      url: apiUrl + '/auth/linkedin/',
+      clientId: '75lavn75q37y6u'
     });
     
     $authProvider.loginUrl = apiUrl + '/auth/login/';
@@ -56,6 +58,14 @@ angular
     $authProvider.authToken = 'Token';
     $authProvider.authHeader = 'Authorization';
 
+  })
+  .config(function(toastrConfig) {
+    angular.extend(toastrConfig, {      
+      'closeButton': false,   
+      'positionClass': 'toast-top-left',     
+      'timeOut': '5000',
+      'extendedTimeOut': '1000'
+    });
   })
 
   .config(function ($stateProvider, $urlRouterProvider) {
@@ -85,9 +95,14 @@ angular
         controller: 'VerifyEmailCtrl'
       })
       .state('resetConfirm', {
-        url: '/reset/confirm/:uid/:token/',
+        url: '/reset/:uid/:token/',
         templateUrl: 'views/home.html',
         controller: 'ResetCtrl'
+      })
+      .state('profile', {
+	url: '/profile',
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileCtrl'
       });
   })
 
@@ -117,7 +132,7 @@ angular
     });
   });
 
-toastr.options = {
+/*toastr.options = {
   'closeButton': false,
   'debug': false,
   'progressBar': false,
@@ -131,4 +146,4 @@ toastr.options = {
   'hideEasing': 'linear',
   'showMethod': 'fadeIn',
   'hideMethod': 'fadeOut'
-};
+};*/

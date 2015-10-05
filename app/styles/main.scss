@@ -85,11 +85,21 @@ h2 {
 }
 
 .title.mini {
-  margin-top: 0;
+  margin-top: 0px;
+}
+
+.title.left {
+  margin-top: 20px;
+  text-align: left;	
 }
 
 .title.mini img {
   width: 200px;
+}
+
+.title.left img{
+  width: 180px;
+  vertical-align: top;
 }
 
 .title > .blue2 {

@@ -42,7 +42,7 @@ angular.module('givagoApp')
           $window.localStorage.currentUser = {};
           $rootScope.currentUser = {};
 
-          toastr.info('You have been logged out');
+          toastr.info('You have been logged out.');
         });
     };
   });

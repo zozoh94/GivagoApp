@@ -13,8 +13,7 @@ angular.module('givagoApp').controller('HomeCtrl', function ($scope, $document, 
   });
   $scope.scrollToContent = function()
   {
-    var contentContainer = angular
-	  .element(document.getElementById('content-container'));
+    var contentContainer = angular.element(document.getElementById('content-container'));
     $document.scrollTo(contentContainer, 0, 800);
   };
 });

@@ -82,7 +82,7 @@ angular.module('givagoApp')
       progressBar.stop();
       
       ajax.adSee($stateParams.ad).success(function() {
-	swal({title : 'Thank you!', text : 'You\'re amazing ! The World will thank you for that :)', type : 'success'}); // jshint ignore:line
+	swal({title : 'Thank you!', text : 'You\'re amazing! The World will thank you for that :)', type : 'success'}); // jshint ignore:line
 	player.stopVideo();
 	player.seekTo(0, false);
 	progressBar.set(0);

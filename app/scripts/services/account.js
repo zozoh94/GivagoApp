@@ -47,10 +47,20 @@ angular.module('givagoApp')
             if(typeof response.data.username !== 'undefined'){
               $window.localStorage.currentUser = JSON.stringify(response.data);
               $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
+	      toastr.success('You have successfully logged in');
             } else {
-              $scope.getProfile();
-            }	    
-            toastr.success('You have successfully logged in');
+              $scope.getProfile().success(function() {
+		toastr.success('You have successfully logged in');
+	      }).error(function(response) {
+		toastr.success(response.detail);
+
+		$auth.logout()
+		  .then(function() {
+		    $window.localStorage.currentUser = {};
+		    $rootScope.currentUser = {};
+		  });
+	      });
+            }	                
           })
           .catch(function() {
             toastr.error('You have already been connected with another social media or you\'ve already an account on Givago. Please use the correct way to log in');

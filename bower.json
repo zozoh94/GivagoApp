@@ -31,7 +31,6 @@
     "progressbar.js": "~0.7.0",
     "q": "~1.0.1",
     "satellizer": "~0.12.5",
-    "angular-tour": "~0.2.5",
     "angular-cookie": "~4.0.9"
   },
   "devDependencies": {

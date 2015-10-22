@@ -4,12 +4,16 @@
  * @ngdoc function
  * @name givagoApp.controller:MenuCtrl
  * @description
- * # MainCtrl
+ * # MenuCtrl
  * Controller of the menu
  */
 angular.module('givagoApp')
   .controller('MenuCtrl', function ($scope, $rootScope, $window, $auth, $log, account, $modal, toastr) {
 
+    if($auth.isAuthenticated() && $rootScope.currentStep === 0) {
+      $rootScope.currentStep = 1;
+    }
+    
     $scope.isAuthenticated = function() {
       return $auth.isAuthenticated();
     };
@@ -44,6 +48,12 @@ angular.module('givagoApp')
 
           toastr.info('You have been logged out.');
         });
+    };
+
+    $scope.isXs = function() {
+      /* jshint ignore:start */
+      return ($(window).width() < 768);
+      /* jshint ignore:end */
     };
   });
 

@@ -1,0 +1,85 @@
+<div class="container">
+  <h2 class="title mini" ui-sref="home"><img src="images/givago-logo.png" alt="Givago" /></h2>  
+  <div class="container content-container presentation-contact-container">
+    <h1>Community</h1>
+    <p>Givago want to support the community. So please contact us if you got some local project, and together with the community we will do our best to make it become reality!</p>    
+    <h3>As an individual?</h3>
+    <ul class="fa-ul text-left">
+      <li><i class="fa-li fa fa-check-square"></i>You want to change the world but you got no money?</li>
+      <li><i class="fa-li fa fa-check-square"></i>You want to be a change maker, and be part of a local and global community?</li>
+      <li><i class="fa-li fa fa-check-square"></i>You are ready to spend some time to see this changes?</li>
+      <li><i class="fa-li fa fa-check-square"></i>You are a ready to call yourself Givago’er?</li>
+    </ul>
+    <h3>Then, welcome on our amazing community!</h3>
+  </div>
+  <div class="container content-container light-bg contact-container">
+    <h2>Contact Us</h2>
+    <form name="contactForm" method="POST" ng-submit="contactCommunity()">
+      <div class="col-md-6">
+	<div class="form-group" show-errors="{ showSuccess: true }">
+	  <label class="sr-only" for="firstName">First name</label>
+	  <div class="input-group">
+	    <span class="input-group-addon fa fa-user"></span>
+	    <input class="form-control" id="firstName" name="firstName" ng-model="firstName" placeholder="First name" required>
+	  </div>	     
+	  <div class="help-block" ng-show="errors.first_name || contactForm.firstName.$dirty && contactForm.firstName.$invalid">
+            <p class="text-danger" ng-show="contactForm.firstName.$error.required">First name is required.</p>
+	    <p class="text-danger" ng-repeat="error in errors.first_name">{{ error }}</p>
+	  </div>
+	</div>
+      </div>
+      <div class="col-md-6">
+	<div class="form-group" show-errors="{ showSuccess: true }">
+	  <label class="sr-only" for="lastName">Last name</label>
+	  <div class="input-group">
+	    <span class="input-group-addon fa fa-user"></span>
+	    <input class="form-control" id="lastName" name="lastName" ng-model="lastName" placeholder="Last name" required>
+	  </div>	     
+	  <div class="help-block" ng-show="errors.last_name || contactForm.lastName.$dirty && contactForm.lastName.$invalid">
+            <p class="text-danger" ng-show="contactForm.lastName.$error.required">Last name is required.</p>
+	    <p class="text-danger" ng-repeat="error in errors.last_name">{{ error }}</p>
+	  </div>
+	</div>
+      </div>
+      <div class="col-md-6">
+	<div class="form-group" show-errors="{ showSuccess: true }">
+	  <label class="sr-only" for="email">Email address</label>
+	  <div class="input-group">
+	    <span class="input-group-addon">@</span>
+	    <input type="email" class="form-control" id="email" name="email" ng-model="email" placeholder="Email" required ng-pattern="/^[A-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
+	  </div>
+	  <div class="help-block" ng-show="errors.email || contactForm.email.$dirty && contactForm.email.$invalid">
+            <p class="text-danger" ng-show="contactForm.email.$error.required">Email is required.</p>
+            <p class="text-danger" ng-show="contactForm.email.$error.pattern">Email seems invalid.</p>
+	    <p class="text-danger" ng-repeat="error in errors.email">{{ error }}</p>
+          </div>
+	</div>	
+      </div>
+      <div class="col-md-6">
+	<div class="form-group" show-errors="{ showSuccess: true }">	  
+	  <label class="sr-only" for="phone">Phone number</label>
+	  <div class="input-group">
+	    <span class="input-group-addon fa fa-phone"></span>
+	    <input type="tel" class="form-control" id="phone" name="phone" ng-model="phone" placeholder="Phone number" required ng-pattern="/^\+(?:[0-9] ?){6,14}[0-9]$/">
+	  </div>
+	  <div class="help-block" ng-show="errors.phone || contactForm.phone.$dirty && contactForm.phone.$invalid">
+            <p class="text-danger" ng-show="contactForm.phone.$error.required">Phone number is required.</p>
+            <p class="text-danger" ng-show="contactForm.phone.$error.pattern">Phone number seems invalid.</p>
+	    <p class="text-danger" ng-repeat="error in errors.phone">{{ error }}</p>
+          </div>
+	</div>
+      </div>
+      <div class="col-md-12">
+	<div class="form-group" show-errors="{ showSuccess: true }">
+	  <label class="sr-only" for="comment">Comment</label>
+	  <textarea class="form-control" id="comment" name="comment" ng-model="comment" placeholder="Leave a comment" required></textarea>
+	  <div class="help-block" ng-show="errors.comment || contactForm.comment.$dirty && contactForm.comment.$invalid">
+            <p class="text-danger" ng-show="contactForm.comment.$error.required">Comment is required.</p>
+	    <p class="text-danger" ng-repeat="error in errors.comment">{{ error }}</p>
+          </div>
+	</div>
+	<button type="submit" class="btn btn-primary pull-right" ng-disabled="contactForm.$invalid"><span class="fa fa-send"></span> Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

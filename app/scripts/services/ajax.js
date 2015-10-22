@@ -9,8 +9,8 @@ angular.module('givagoApp')
       ad: function(id) {
 	return $http.get(apiUrl+'/ad/'+id+'/');
       },
-      adSee: function(id) {
-	return $http.post(apiUrl+'/ad/'+id+'/see/');
+      adSee: function(id, give) {
+	return $http.post(apiUrl+'/ad/'+id+'/see/', { 'give' : give });
       },
       gifts: function() {
 	return $http.get(apiUrl+'/gift/');
@@ -41,6 +41,15 @@ angular.module('givagoApp')
       },
       editProfile: function(username, email) {
 	return $http.put(apiUrl+'/auth/user/', {username : username, email : email });
+      },
+      contactCharity: function(firstName, lastName, email, phone, charityName, position, comment) {
+	return $http.post(apiUrl+'/contact/charity/', {'first_name': firstName, 'last_name': lastName, 'email': email, 'phone': phone, 'charity_name': charityName, 'position': position, 'comment': comment });
+      },
+      contactSponsor: function(firstName, lastName, email, phone, companyName, position, budget, comment) {
+	return $http.post(apiUrl+'/contact/sponsor/', {'first_name': firstName, 'last_name': lastName, 'email': email, 'phone': phone, 'company_name': companyName, 'position': position, 'budget': budget, 'comment': comment });
+      },
+      contactCommunity: function(firstName, lastName, email, phone, comment) {
+	return $http.post(apiUrl+'/auth/community/', {'first_name': firstName, 'last_name': lastName, 'email': email, 'phone': phone, 'comment': comment });
       }
     };
   });

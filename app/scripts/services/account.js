@@ -35,7 +35,8 @@ angular.module('givagoApp')
             if(newVal === true){
               modalInstance.close();
 	      $scope.$emit('account::authenticated');
-            }
+	      console.log('auth');
+	    }
           }
         );
 

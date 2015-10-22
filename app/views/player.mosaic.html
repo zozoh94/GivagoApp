@@ -1,26 +1,28 @@
-<div class="player-container">
-  <div class="title-container">
-    <h1 class="title mini" ui-sref="home"><img src="images/givago-logo.png" alt="Givago" /></h1>
-  </div>
+<div class="container">
+  <h1 class="title mini" ui-sref="home"><img src="images/givago-logo.png" alt="Givago" /></h1>
   <div class="player">
-    <div class="container player-mosaic">
-      <div class="col-md-8 col-md-offset-2">
-        <ul class="list-unstyled video-list-thumbs row">
-          <li ng-repeat="ad in ads" class="col-md-6">
-            <a title="{{ ad.name }}" ng-click="clickOnMosaic()" ui-sref="player({ gift: uiRouterState.params.gift, ad : ad.id })">
-              <img class="video-preview img-responsive" ng-src="{{ ad.video.thumbnail }}" />
-              <span class="glyphicon glyphicon-play-circle"></span>
-              <span class="video-title">{{ ad.name }}</span>
-            </a>
-          </li>
-        </ul>
+    <div class="col-md-8 col-md-offset-2">
+      <div class="tour third-step" ng-show="currentStep === 2">
+	<p>3rd: Watch a short video (Max 1 minute).</p>
+	<a class="btn btn-danger pull-right" ng-click="closeFeatureTour()">I don't want the feature tour</a>
       </div>
-      <div class="clearfix"></div>
+      <ul class="list-unstyled video-list-thumbs row">
+        <li ng-repeat="ad in ads" class="col-md-6">
+          <a title="{{ ad.name }}" ui-sref="player({ gift: uiRouterState.params.gift, ad : ad.id })">
+            <img class="video-preview img-responsive" ng-src="{{ ad.video.thumbnail }}" />
+            <span class="glyphicon glyphicon-play-circle"></span>
+            <span class="video-title">{{ ad.name }}</span>
+          </a>
+        </li>
+      </ul>
     </div>
-    <!--<div class="row">
+    <div class="clearfix"></div>    
+    <!--
+    <div class="row">
       <div class="col-md-9 col-md-offset-3">
-	<pagination total-items="totalPages" ng-model="currentPage" ng-change="pageChanged()" items-per-page="sizePage" boundary-links="true"></pagination>
-      </div>-->
+        <pagination total-items="totalPages" ng-model="currentPage" ng-change="pageChanged()" items-per-page="sizePage" boundary-links="true"></pagination>  
+      </div>
     </div>
+    -->
   </div>
 </div>

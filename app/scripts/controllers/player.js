@@ -8,8 +8,20 @@
  * Controller of the givagoApp's Player
  */
 angular.module('givagoApp')
-  .controller('PlayerCtrl', function ($window, $scope, $sce, $q, $state, $stateParams, account, ajax, toastr){
+  .controller('PlayerCtrl', function ($window, $rootScope, $scope, $sce, $q, $state, $stateParams, account, ajax, toastr, ipCookie){
+    if($rootScope.currentStep === 2) {
+      $rootScope.currentStep = 3;
+    }
 
+    $scope.loadAd = function() {
+      ajax.ad($stateParams.ad).success(function(data) {
+	$scope.ad = data;
+	$scope.video = data.video.url;
+      }).error(function(data) {
+	$state.go('mosaic', { gift : $stateParams.gift });
+	toastr.info(data.detail);
+      });
+    };
     
     $scope.playerVars = {
       controls: 0,
@@ -21,11 +33,8 @@ angular.module('givagoApp')
       theme: 'light',
       playerapiid: 'ytplayer'
     };
-    
-    ajax.ad($stateParams.ad).success(function(data) {
-      $scope.ad = data;
-      $scope.video = data.video.url;
-    });
+
+    $scope.loadAd();
 
     var bufferingTimer,
         progressBar,
@@ -81,12 +90,15 @@ angular.module('givagoApp')
     $scope.$on('youtube.player.ended', function ($event, player) {
       progressBar.stop();
       
-      ajax.adSee($stateParams.ad).success(function() {
+      ajax.adSee($stateParams.ad, $stateParams.gift).success(function() {
 	swal({title : 'Thank you!', text : 'You\'re amazing! The World will thank you for that :)', type : 'success'}); // jshint ignore:line
+	$scope.loadAd();
 	player.stopVideo();
 	player.seekTo(0, false);
 	progressBar.set(0);
-      });
+	$rootScope.currentStep = -1;
+ 	ipCookie('featureTour', true, { expires: 3000 });
+      });      
     });
 
     $scope.$on('youtube.player.buffering', function () {      

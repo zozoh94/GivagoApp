@@ -1,6 +1,6 @@
 'use strict';
 
-var apiUrl = 'http://127.0.0.1:8000';
+var apiUrl = 'http://api.localhost:8000';
 
 /**
  * @ngdoc overview
@@ -26,7 +26,8 @@ angular
     'validation.match',
     'youtube-embed',
     'ngTagsInput',
-    'toastr'
+    'toastr',
+    'ipCookie'
   ])
 
   .constant('apiUrl', apiUrl)
@@ -57,6 +58,7 @@ angular
     $authProvider.unlinkUrl = apiUrl + '/auth/logout/';
     $authProvider.authToken = 'Token';
     $authProvider.authHeader = 'Authorization';
+    $authProvider.withCredentials = false;
 
   })
   .config(function(toastrConfig) {
@@ -77,6 +79,21 @@ angular
         url: '/',
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl'
+      })
+      .state('sponsor', {
+        url: '/sponsor',
+        templateUrl: 'views/sponsor.html',
+	controller: 'ContactCtrl'
+      })
+      .state('charity', {
+        url: '/charity',
+        templateUrl: 'views/charity.html',
+	controller: 'ContactCtrl'
+      })
+      .state('community', {
+        url: '/community',
+        templateUrl: 'views/community.html',
+	controller: 'ContactCtrl'
       })
       .state('mosaic', {
         url: '/give/:gift/',
@@ -130,20 +147,18 @@ angular
         event.preventDefault();
       }
     });
-  });
+  })
+  .run(function($rootScope, ipCookie) {
+    if(ipCookie('featureTour')) {
+      $rootScope.currentStep = -1;
+    }
+    else {
+      $rootScope.currentStep = 0;
+      ipCookie('featureTour', false, { expires: 3000 });
+    }
 
-/*toastr.options = {
-  'closeButton': false,
-  'debug': false,
-  'progressBar': false,
-  'positionClass': 'toast-top-left',
-  'onclick': null,
-  'showDuration': '300',
-  'hideDuration': '1000',
-  'timeOut': '5000',
-  'extendedTimeOut': '1000',
-  'showEasing': 'swing',
-  'hideEasing': 'linear',
-  'showMethod': 'fadeIn',
-  'hideMethod': 'fadeOut'
-};*/
+    $rootScope.closeFeatureTour = function() {
+      $rootScope.currentStep = -1;
+      ipCookie('featureTour', true, { expires: 3000 });
+    };
+  });

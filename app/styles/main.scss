@@ -13,12 +13,6 @@ body {
   background: url("../images/skulls.png");
 }
 
-h2 {
-  font-weight: 100;
-  font-size: 44px;
-  line-height: 43px;
-}
-
 .wrapper {
   min-height: 360px;
 }
@@ -244,11 +238,11 @@ h2 {
 }
 
 #global-container {
-  position: absolute;
+  position: relative;
   z-index: 3;
   width: 100%;
   height: 100%;
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.5);
+  padding-top: 70px;
 }
 
 .content-container {
@@ -308,10 +302,6 @@ h2 {
   display: block;
   margin-top: 10px;
   font-weight: bold;
-}
-
-.player-container {
-  min-height: 100%;
 }
 
 .know-more {
@@ -379,20 +369,33 @@ h2 {
 
 }
 
-.top-menu-container{
+.user-menu{
   position: fixed;
   top: 20px;
   width: 100%;
-  z-index: 999;
+  z-index: 5;
 }
 
-.top-menu-container > .container {
+.user-menu > .container {
   position: relative;
 }
 
-.top-menu-container .top-left {
+.user-menu .top-right {
   position: absolute;
   right: 0;
+}
+
+.main-menu {
+  position: absolute;
+  top: 26px;
+  width: 100%;
+  z-index: 5;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.main-menu .navbar-collapse.collapse.in, .main-menu .navbar-collapse.collapsing {
+  background-color: #F8F8F8;
 }
 
 .notifications-center{
@@ -606,4 +609,95 @@ a.btn-connect-option {
   }
 }
 
+#user-menu {
+  left: -52px;
+}
 
+.main-menu .navbar-nav > li > a {
+  color: rgb(51, 51, 51);
+}
+
+.contact-container {
+  margin-top: 20px;
+}
+
+.presentation-contact-container {
+  background: #FFF;
+}
+
+.tour {
+  position: absolute;
+  padding: 10px 15px 10px 15px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, .8);
+  color: #333;
+}
+
+.tour:after {
+  left: 100%;
+  top: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-width: 30px;
+}
+
+.first-step {
+  width: 330px;
+  top: -10px;
+  right: 100px;
+}
+
+.second-step {
+  left: 50%;
+  margin-left: -120px;
+  width: 240px;
+  top: 575px;
+}
+
+.third-step {
+  top: -130px;
+  left: 50%;
+  width: 330px;
+  margin-left: -165px;
+}
+
+.last-step {
+  bottom: -135px;
+  left: 50%;
+  width: 400px;
+  margin-left: -200px;
+}
+
+.first-step:after {
+  left: 100%;
+  top: 25%;
+  border-left-color: rgba(255, 255, 255, .8);
+  margin-top: -30px;
+}
+
+.second-step:after {
+  bottom: 100%;
+  left: 50%;
+  border-bottom-color: rgba(255, 255, 255, .8);
+  margin-left: -30px;
+  margin-top: -103px;
+}
+
+.third-step:after {
+  top: 100%;
+  left: 50%;
+  border-top-color: rgba(255, 255, 255, .8);
+  margin-left: -30px;
+}
+
+.last-step:after {
+  bottom: 100%;
+  left: 50%;
+  border-bottom-color: rgba(255, 255, 255, .8);
+  margin-left: -30px;
+  margin-top: -86px;
+}

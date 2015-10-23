@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container home">
   <h1 class="title" ui-sref="home"><img src="images/givago-logo.png" alt="Givago" /></h1>
   <div class="slogan">
     <span>Give a free gift to the World!</span>
   </div>  
-  <div class="player">    
+  <div class="player parallax-player">    
     <div class="player-selection">
       <div class="tour second-step" ng-show="currentStep === 1">
 	<p>2nd: Select your donation.</p>
@@ -13,6 +13,8 @@
 	<i class="fa fa-circle fa-stack-2x"></i>
 	<i class="{{ gift.icon }} fa-stack-1x"></i>
 	<span class="player-label shadow1">{{ gift.name }}</span>
+	<i class="fa fa-circle fa-stack-1x number-gift-circle"></i>
+	<span class="number-gift">{{ gift.number_gifts }}</span>
       </span>
     </div>
   </div>

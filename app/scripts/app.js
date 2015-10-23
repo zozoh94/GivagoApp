@@ -32,6 +32,8 @@ angular
 
   .constant('apiUrl', apiUrl)
 
+  .constant('startMode', true)
+
   .config(function($authProvider) {
 
     $authProvider.facebook({
@@ -120,6 +122,10 @@ angular
 	url: '/profile',
         templateUrl: 'views/profile.html',
         controller: 'ProfileCtrl'
+      })
+      .state('legal', {
+	url: '/legal',
+        templateUrl: 'views/legal.html'
       });
   })
 

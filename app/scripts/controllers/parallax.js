@@ -13,7 +13,7 @@ angular.module('givagoApp').controller('ParallaxCtrl', function ($rootScope, $sc
 
   var doResize = function() {
     var height = $(window).height();
-    var playerPosition = $('.player').position();
+    var playerPosition = $('.parallax-player').position();
 
     if($(window).width() < 1024) {
       $scope.parallaxScene.parallax('disable');
@@ -25,7 +25,7 @@ angular.module('givagoApp').controller('ParallaxCtrl', function ($rootScope, $sc
       return;
     }
     
-    var minHeight = playerPosition.top + $('.player').height() + 30;
+    var minHeight = playerPosition.top + $('.parallax-player').height() + 30;
 
     if(height < minHeight) {
       height = minHeight;

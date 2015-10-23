@@ -1,12 +1,21 @@
 <div class="container">
   <h1 class="title mini" ui-sref="home"><img src="images/givago-logo.png" alt="Givago" /></h1>
-  <div class="player">
-    <div class="col-md-8 col-md-offset-2">
-      <div class="tour third-step" ng-show="currentStep === 2">
-	<p>3rd: Watch a short video (Max 1 minute).</p>
+  <div class="player parallax-player">
+    <div class="container content-container light-bg app-container" ng-show="isSmartphone()">
+      <div class="tour third-step app" ng-show="currentStep === 2">
+	<p>3rd: Download and test an application.</p>
 	<a class="btn btn-danger pull-right" ng-click="closeFeatureTour()">I don't want the feature tour</a>
       </div>
-      <ul class="list-unstyled video-list-thumbs row">
+      <a href="{{ app.link }}">Click here to test {{ app.name }}.</a>
+      <p>To validate your gift please fully install the application</p>
+    </div>
+    <div class="container col-md-8 col-md-offset-2" ng-hide="isSmartphone() && startMode === true">
+      <div class="tour third-step" ng-show="currentStep === 2">
+	<p>3rd: <span ng-hide="startMode">Or </span>Watch a short video<span ng-hide="startMode"> (Max 1 minute)</span>.</p>
+	<a class="btn btn-danger pull-right" ng-click="closeFeatureTour()">I don't want the feature tour</a>
+      </div>
+      <div ng-show="startMode">"<div class="dailymotion-widget" data-placement="560c7267ad02140014ed2af2"></div></div>    
+      <ul class="list-unstyled video-list-thumbs row" ng-hide="startMode">
         <li ng-repeat="ad in ads" class="col-md-6">
           <a title="{{ ad.name }}" ui-sref="player({ gift: uiRouterState.params.gift, ad : ad.id })">
             <img class="video-preview img-responsive" ng-src="{{ ad.video.thumbnail }}" />
@@ -15,7 +24,7 @@
           </a>
         </li>
       </ul>
-    </div>
+    </div>    
     <div class="clearfix"></div>    
     <!--
     <div class="row">
@@ -26,3 +35,5 @@
     -->
   </div>
 </div>
+
+<script>(function(w,d,s,u,n,e,c){w.PXLObject = n; w[n] = w[n] || function(){(w[n].q = w[n].q || []).push(arguments);};w[n].l = 1 * new Date();e = d.createElement(s); e.async = 1; e.src = u;c = d.getElementsByTagName(s)[0]; c.parentNode.insertBefore(e,c);})(window, document, "script", "//api.dmcdn.net/pxl/client.js", "pxl");</script>

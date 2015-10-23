@@ -672,6 +672,13 @@ a.btn-connect-option {
   margin-left: -200px;
 }
 
+.third-step.app {
+  top: 105px;
+  left: 50%;
+  width: 330px;
+  margin-left: -165px;
+}
+
 .first-step:after {
   left: 100%;
   top: 25%;
@@ -700,4 +707,81 @@ a.btn-connect-option {
   border-bottom-color: rgba(255, 255, 255, .8);
   margin-left: -30px;
   margin-top: -86px;
+}
+
+.number-gift-circle {
+  top: 50px;
+  left: 50px;
+  font-size: 0.8em;
+}
+
+.number-gift {
+  position: absolute;
+  width: 100%;
+  left: 50px;
+  bottom: -50px;
+  font-size: 0.4em;
+}
+
+@media (max-width: 480px) {
+  .number-gift-circle {
+    top: 30px;
+    left: 30px;    
+  }
+
+  .number-gift {
+    left: 30px;
+    bottom: -30px;
+  }
+}
+
+.home {
+  min-height: 700px;
+}
+
+.footer{
+  position: relative;
+  text-align: center;
+  z-index: 3;
+  margin-top: 20px;
+}
+
+.footer ul li {
+  list-style-type: none;
+  display: inline;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.footer ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.social-logo {
+  font-size: 2.5em;
+}
+
+.social-logo .google {
+  color: #D73D32;
+}
+
+.social-logo .facebook {
+  color: #4862A3;
+}
+
+.social-logo .twitter {
+  color: #55ACEE;
+}
+
+.dm-channel, .dm-video-title {
+  color: #FFF!important;
+}
+
+.dm-widget-title {
+  display: none!important;
+}
+
+.app-container {
+  margin-bottom: 180px;
 }

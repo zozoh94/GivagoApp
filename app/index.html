@@ -60,6 +60,7 @@
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="navbar">
 	  <ul class="nav navbar-nav navbar-left">
+	    <li><a ui-sref="home">Home</a></li>
 	    <li><a ui-sref="charity">Charity</a></li>
 	    <li><a ui-sref="sponsor">Sponsor</a></li>	
 	    <li><a ui-sref="community">Community</a></li>
@@ -110,6 +111,22 @@
     </div>
     
     <div id="global-container" ui-view></div>
+
+    <div class="footer">
+      <div class="container">
+	<ul class="social-logo">
+	  <a href="https://www.facebook.com/givagocharity" class="facebook"><span class="fa fa-facebook-square"></span></a>
+	  <a href="https://plus.google.com/communities/111636364612558887812" class="google"><span class="fa fa-google-plus-square"></span></a>
+	  <a href="https://twitter.com/GIVAGOCHARITY" class="twitter"><span class="fa fa-twitter-square"></span></a>
+	</ul>
+	<ul>
+	  <li><a ui-sref="legal">Legal</a></li>	  
+	</ul>
+	<ul style="font-size: 15px;">
+	  <li><a href="mailto:dev@givago.co">You have encountered any issue? Contact the developper</a></li>
+	</ul>
+      </div>
+    </div>
     
     <script type="text/ng-template" id="reset.html">
       <div class="modal-body" style="text-align: center">

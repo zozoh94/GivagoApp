@@ -1,89 +1,91 @@
 <div class="container">
   <h2 class="title mini" ui-sref="home"><img src="images/givago-logo.png" alt="Givago" /></h2>
-  <div class="container content-container light-bg">
-    <div class="profile">
-      <h1>My profile</h1>
-      <p>My username : {{ currentUser.username }}</p>
-      <p>My email : {{ currentUser.email }}</p>
-      <p>Number of ads viewed : {{ currentUser.number_ads_viewed }}</p>
-      <p>Number of different ads viewed : {{ currentUser.number_different_ads_viewed }}</p>
-      <a ng-click="goToEditProfile()" class="btn btn-primary">Edit my profile</a>
-      <a ng-click="goToChangePassword()" class="btn btn-success">Change my password</a>
+  <div class="parallax-player">
+    <div class="container content-container light-bg">
+      <div class="profile">
+	<h1>My profile</h1>
+	<p>My username : {{ currentUser.username }}</p>
+	<p>My email : {{ currentUser.email }}</p>
+	<p>Number of ads viewed : {{ currentUser.number_ads_viewed }}</p>
+	<p>Number of different ads viewed : {{ currentUser.number_different_ads_viewed }}</p>
+	<a ng-click="goToEditProfile()" class="btn btn-primary">Edit my profile</a>
+	<a ng-click="goToChangePassword()" class="btn btn-success">Change my password</a>
+      </div>
+      <script type="text/ng-template" id="editProfile.html">
+	<div class="modal-body" style="text-align: center">
+	  <h2 style="text-align: center; margin-bottom:20px;">Edit my profile</h2>
+	  <form name="editProfileForm" ng-submit="editProfile()" action="" method="POST">
+	    <div class="form-group" show-errors="{ showSuccess: true }">
+              <div class="input-group">
+		<span class="input-group-addon"><i class="fa fa-user"></i></span>
+		<input class="form-control" name="username" ng-model="username" placeholder="Username" required autofocus>
+              </div>
+              <div class="help-block" ng-show="errors.username || editProfileForm.username.$dirty && editProfileForm.displayName.$invalid">
+		<p class="text-danger" ng-show="editProfileForm.username.$error.required">The user's name is required.</p>
+		<p class="text-danger" ng-repeat="error in errors.username">{{ error }}</p>
+              </div>
+            </div>
+
+            <div class="form-group" show-errors="{ showSuccess: true }">
+              <div class="input-group">
+		<span class="input-group-addon"><i class="fa fa-user"></i></span>
+		<input class="form-control" type="email" id="email" name="email" ng-model="email" placeholder="Email" required
+                       ng-pattern="/^[A-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
+              </div>
+
+              <div class="help-block" ng-show="errors.email || editProfileForm.email.$dirty && editProfileForm.email.$invalid">
+		<p class="text-danger" ng-show="editProfileForm.email.$error.required">The user's email is required.</p>
+		<p class="text-danger" ng-show="editProfileForm.email.$error.pattern">The email seems invalid.</p>
+		<p class="text-danger" ng-repeat="error in errors.email">{{ error }}</p>
+              </div>
+            </div>
+	    <input type="submit" ng-disabled="editProfileForm.$invalid" class="btn btn-primary btn-block" value="Edit" />
+	  </form>
+	</div>
+      </script>
+      <script type="text/ng-template" id="changePassword.html">
+	<div class="modal-body" style="text-align: center">
+	  <h2 style="text-align: center; margin-bottom:20px;">Change my password</h2>
+	  <form name="changePasswordForm" ng-submit="changePassword()" action="" method="POST">
+	    <div class="form-group" show-errors="{ showSuccess: true }">
+              <div class="input-group" ng-class="{ 'has-error' : changePasswordForm.oldPassword.$invalid && changePasswordForm.oldPassword.$dirty }">
+		<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+		<input class="form-control" type="password" name="oldPassword" ng-model="oldPassword" placeholder="Old password" required>
+              </div>
+
+              <div class="help-block" ng-show="errors.old_password || changePasswordForm.oldPassword.$dirty && changePasswordForm.oldPassword.$invalid">
+		<p class="text-danger" ng-show="changePasswordForm.oldPassword.$error.required">Password is required.</p>
+		<p class="text-danger" ng-repeat="error in errors.old_password">{{ error }}</p>
+              </div>	    
+            </div>
+	    
+	    <div class="form-group" show-errors="{ showSuccess: true }">
+              <div class="input-group" ng-class="{ 'has-error' : changePasswordForm.password.$invalid && changePasswordForm.password.$dirty }">
+		<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+		<input class="form-control" type="password" name="password" ng-model="password" placeholder="New password" required>
+              </div>
+
+              <div class="help-block" ng-show="errors.new_password1 || changePasswordForm.password.$dirty && changePasswordForm.password.$invalid">
+		<p class="text-danger" ng-show="changePasswordForm.password.$error.required">Password is required.</p>
+		<p class="text-danger" ng-repeat="error in errors.new_password1">{{ error }}</p>
+              </div>
+            </div>
+
+            <div class="form-group" show-errors="{ showSuccess: true }">
+              <div class="input-group">
+		<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+		<input match="password" class="form-control" type="password" name="confirmPassword" ng-model="confirmPassword" placeholder="Confirm new password">
+              </div>
+
+              <div class="help-block" ng-show="errors.new_password2 || changePasswordForm.confirmPassword.$dirty && changePasswordForm.confirmPassword.$invalid">
+		<p class="text-danger" ng-show="changePasswordForm.confirmPassword.$error.match">Password must match.</p>
+		<p class="text-danger" ng-repeat="error in errors.new_password2">{{ error }}</p>
+              </div>
+            </div>
+	    <input type="submit" ng-disabled="changePasswordForm.$invalid" class="btn btn-primary btn-block" value="Change" />
+	  </form>
+	</div>
+      </script>
     </div>
-    <script type="text/ng-template" id="editProfile.html">
-      <div class="modal-body" style="text-align: center">
-	<h2 style="text-align: center; margin-bottom:20px;">Edit my profile</h2>
-	<form name="editProfileForm" ng-submit="editProfile()" action="" method="POST">
-	  <div class="form-group" show-errors="{ showSuccess: true }">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-user"></i></span>
-              <input class="form-control" name="username" ng-model="username" placeholder="Username" required autofocus>
-            </div>
-            <div class="help-block" ng-show="errors.username || editProfileForm.username.$dirty && editProfileForm.displayName.$invalid">
-              <p class="text-danger" ng-show="editProfileForm.username.$error.required">The user's name is required.</p>
-	      <p class="text-danger" ng-repeat="error in errors.username">{{ error }}</p>
-            </div>
-          </div>
-
-          <div class="form-group" show-errors="{ showSuccess: true }">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-user"></i></span>
-              <input class="form-control" type="email" id="email" name="email" ng-model="email" placeholder="Email" required
-                     ng-pattern="/^[A-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
-            </div>
-
-            <div class="help-block" ng-show="errors.email || editProfileForm.email.$dirty && editProfileForm.email.$invalid">
-              <p class="text-danger" ng-show="editProfileForm.email.$error.required">The user's email is required.</p>
-              <p class="text-danger" ng-show="editProfileForm.email.$error.pattern">The email seems invalid.</p>
-	      <p class="text-danger" ng-repeat="error in errors.email">{{ error }}</p>
-            </div>
-          </div>
-	  <input type="submit" ng-disabled="editProfileForm.$invalid" class="btn btn-primary btn-block" value="Edit" />
-	</form>
-      </div>
-    </script>
-    <script type="text/ng-template" id="changePassword.html">
-      <div class="modal-body" style="text-align: center">
-	<h2 style="text-align: center; margin-bottom:20px;">Change my password</h2>
-	<form name="changePasswordForm" ng-submit="changePassword()" action="" method="POST">
-	  <div class="form-group" show-errors="{ showSuccess: true }">
-            <div class="input-group" ng-class="{ 'has-error' : changePasswordForm.oldPassword.$invalid && changePasswordForm.oldPassword.$dirty }">
-	      <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-	      <input class="form-control" type="password" name="oldPassword" ng-model="oldPassword" placeholder="Old password" required>
-            </div>
-
-            <div class="help-block" ng-show="errors.old_password || changePasswordForm.oldPassword.$dirty && changePasswordForm.oldPassword.$invalid">
-	      <p class="text-danger" ng-show="changePasswordForm.oldPassword.$error.required">Password is required.</p>
-	      <p class="text-danger" ng-repeat="error in errors.old_password">{{ error }}</p>
-            </div>	    
-          </div>
-	  
-	  <div class="form-group" show-errors="{ showSuccess: true }">
-            <div class="input-group" ng-class="{ 'has-error' : changePasswordForm.password.$invalid && changePasswordForm.password.$dirty }">
-	      <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-	      <input class="form-control" type="password" name="password" ng-model="password" placeholder="New password" required>
-            </div>
-
-            <div class="help-block" ng-show="errors.new_password1 || changePasswordForm.password.$dirty && changePasswordForm.password.$invalid">
-	      <p class="text-danger" ng-show="changePasswordForm.password.$error.required">Password is required.</p>
-	      <p class="text-danger" ng-repeat="error in errors.new_password1">{{ error }}</p>
-            </div>
-          </div>
-
-          <div class="form-group" show-errors="{ showSuccess: true }">
-            <div class="input-group">
-	      <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-	      <input match="password" class="form-control" type="password" name="confirmPassword" ng-model="confirmPassword" placeholder="Confirm new password">
-            </div>
-
-            <div class="help-block" ng-show="errors.new_password2 || changePasswordForm.confirmPassword.$dirty && changePasswordForm.confirmPassword.$invalid">
-	      <p class="text-danger" ng-show="changePasswordForm.confirmPassword.$error.match">Password must match.</p>
-	      <p class="text-danger" ng-repeat="error in errors.new_password2">{{ error }}</p>
-            </div>
-          </div>
-	  <input type="submit" ng-disabled="changePasswordForm.$invalid" class="btn btn-primary btn-block" value="Change" />
-	</form>
-      </div>
-    </script>
   </div>
 </div>

@@ -17,8 +17,9 @@ angular.module('givagoApp')
       updateProfile: function(profileData) {
         return $http.put(apiUrl+'/auth/user/', profileData);
       },
-      openLoginModal: function ($scope) {
-
+      openLoginModal: function ($scope, back) {
+	var backdrop = back || true;
+	
         if($auth.isAuthenticated()) {
           return;
 	}
@@ -26,7 +27,8 @@ angular.module('givagoApp')
         modalInstance = $modal.open({
           templateUrl: 'login.html',
           controller: 'ModalCtrl',
-          size: 'sm'
+          size: 'sm',
+	  backdrop: backdrop
         });
 
         $scope.$watch(

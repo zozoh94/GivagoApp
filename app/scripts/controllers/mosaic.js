@@ -7,7 +7,7 @@
  * # MosaicCtrl
  * Controller of the givagoApp ads mosaic
  */
-angular.module('givagoApp').controller('MosaicCtrl', function ($rootScope, $scope, $state, $auth, ajax, account, toastr, startMode){
+angular.module('givagoApp').controller('MosaicCtrl', function ($rootScope, $scope, $state, $auth, ajax, account, toastr, startMode, ipCookie){
   $scope.startMode = startMode;
   
   $scope.isSmartphone = function(){

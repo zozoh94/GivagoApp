@@ -12,13 +12,12 @@ angular.module('givagoApp').controller('MosaicCtrl', function ($rootScope, $scop
 
   $scope.clickApp = function(app) {
     ajax.appClick(app.id, $stateParams.gift).success(function(response) {
-      $window.open(app.link+"&cid="+response.cid);
+      $window.open(app.link+'&cid='+response.cid);
     });
   };
   
-  $scope.isSmartphone = function(){
-    return true;
-    //return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  $scope.isSmartphone = function(){    
+    return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   };
   
   if($rootScope.currentStep === 1) {

@@ -1,4 +1,9 @@
 <div class="container home">
+  <ul class="social-logo">
+      <li><a target="_blank" href="https://www.facebook.com/givagocharity" class="facebook"><span class="fa fa-facebook-square"></span></a></li>
+      <li><a target="_blank" href="https://plus.google.com/communities/111636364612558887812" class="google"><span class="fa fa-google-plus-square"></span></a></li>
+      <li><a target="_blank" href="https://twitter.com/GIVAGOCHARITY" class="twitter"><span class="fa fa-twitter-square"></span></a></li>
+    </ul>
   <h1 class="title" ui-sref="home"><img src="images/givago-logo.png" alt="Givago" /></h1>
   <div class="slogan">
     <span>Give a free gift to the World!</span>
@@ -6,7 +11,7 @@
   <div class="player parallax-player">    
     <div class="player-selection">
       <div class="tour second-step" ng-show="currentStep === 1">
-	<p>2nd: Select your donation.</p>
+	<p><span class="label label-primary">2</span> Select your donation.</p>
 	<a class="btn btn-danger pull-right" ng-click="closeFeatureTour()">I don't want the feature tour</a>
       </div>
       <span class="fa-stack fa-5x" ng-repeat="gift in gifts" ui-sref="mosaic({gift: gift.id})">

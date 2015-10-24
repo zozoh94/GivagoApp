@@ -7,11 +7,18 @@
  * # MosaicCtrl
  * Controller of the givagoApp ads mosaic
  */
-angular.module('givagoApp').controller('MosaicCtrl', function ($rootScope, $scope, $state, $auth, ajax, account, toastr, startMode, ipCookie){
+angular.module('givagoApp').controller('MosaicCtrl', function ($rootScope, $scope, $state, $auth, $stateParams, $window, ajax, account, toastr, startMode, ipCookie){
   $scope.startMode = startMode;
+
+  $scope.clickApp = function(app) {
+    ajax.appClick(app.id, $stateParams.gift).success(function(response) {
+      $window.open(app.link+"&cid="+response.cid);
+    });
+  };
   
   $scope.isSmartphone = function(){
-    return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    return true;
+    //return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   };
   
   if($rootScope.currentStep === 1) {
@@ -66,10 +73,13 @@ angular.module('givagoApp').controller('MosaicCtrl', function ($rootScope, $scop
   };
 
   window.addEventListener('message',function(event) {
-    if(event.data.indexOf('ended') !== -1) {
-      swal({title : 'Thank you!', text : 'You\'re amazing! The World will thank you for that :)', type : 'success'}); // jshint ignore:line
-      $rootScope.currentStep = -1;
-      ipCookie('featureTour', true, { expires: 3000 });
+    console.log(event);
+    if(event.data.indexOf('timeupdate') !== -1 && event.data.indexOf('time=30') !== -1) {
+      ajax.adDailymotionSee($stateParams.gift).success(function() {
+	swal({title : 'Thank you!', text : 'You\'re amazing! The World will thank you for that :)', type : 'success'}); // jshint ignore:line
+	$rootScope.currentStep = -1;
+	ipCookie('featureTour', true, { expires: 3000 });
+      });
     }
   },false);
 

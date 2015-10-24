@@ -9,7 +9,7 @@
  */
 angular.module('givagoApp')
   .controller('MenuCtrl', function ($scope, $rootScope, $window, $auth, $log, account, $modal, toastr) {
-
+    
     if($auth.isAuthenticated() && $rootScope.currentStep === 0) {
       $rootScope.currentStep = 1;
     }

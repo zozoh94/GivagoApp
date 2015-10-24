@@ -3,15 +3,15 @@
   <div class="player parallax-player">
     <div class="container content-container light-bg app-container" ng-show="isSmartphone()">
       <div class="tour third-step app" ng-show="currentStep === 2">
-	<p>3rd: Download and test an application.</p>
+	<p><span class="label label-primary">3</span> Download and test an application.</p>
 	<a class="btn btn-danger pull-right" ng-click="closeFeatureTour()">I don't want the feature tour</a>
       </div>
-      <a href="{{ app.link }}">Click here to test {{ app.name }}.</a>
+      <a ng-click="clickApp(app)" class="app-link">Click here to test {{ app.name }}.</a>
       <p>To validate your gift please fully install the application</p>
     </div>
     <div class="container col-md-8 col-md-offset-2" ng-hide="isSmartphone() && startMode === true">
       <div class="tour third-step" ng-show="currentStep === 2">
-	<p>3rd: <span ng-hide="startMode">Or </span>Watch a short video<span ng-hide="startMode"> (Max 1 minute)</span>.</p>
+	<p><span class="label label-primary">3</span> <span ng-hide="startMode">Or </span>Watch a short video<span ng-hide="startMode"> (Max 1 minute)</span>.</p>
 	<a class="btn btn-danger pull-right" ng-click="closeFeatureTour()">I don't want the feature tour</a>
       </div>
       <div ng-show="startMode">"<div class="dailymotion-widget" data-placement="560c7267ad02140014ed2af2"></div></div>    

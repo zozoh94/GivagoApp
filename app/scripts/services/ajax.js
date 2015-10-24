@@ -12,8 +12,14 @@ angular.module('givagoApp')
       adSee: function(id, give) {
 	return $http.post(apiUrl+'/ad/'+id+'/see/', { 'give' : give });
       },
+      adDailymotionSee: function(give) {
+	return $http.post(apiUrl+'/ad/see/dailymotion/', { 'give' : give });
+      },
       app: function(os) {
 	return $http.get(apiUrl+'/app/?os='+os);
+      },
+      appClick: function(id, give) {
+	return $http.post(apiUrl+'/app/'+id+'/click/', { 'give' : give});
       },
       gifts: function() {
 	return $http.get(apiUrl+'/gift/');

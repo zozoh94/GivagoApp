@@ -40,16 +40,16 @@
       </ul>
     </div>
      
-    <nav class="navbar navbar-default main-menu" ng-controller="MenuCtrl">
+    <nav class="navbar navbar-default main-menu" role="navigation" ng-controller="MenuCtrl">
       <div class="container">
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="navbar-header">
 	  <div class="first-step tour" ng-show="isXs() && currentStep === 0">
 	    <p><b>Welcome on givago! If you want to be a change maker, you are at the perfect place!</b></p>
-	    <p>1st: Connect with us trough Facebook, Google, or create an account!</p>
+	    <p><span class="label label-primary">1</span> Connect with us trough Facebook, Google, or create an account!</p>
 	    <a class="btn btn-danger pull-right" ng-click="closeFeatureTour()">I don't want the feature tour</a>
 	  </div>
-	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+	  <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -58,7 +58,7 @@
 	</div>
 
 	<!-- Collect the nav links, forms, and other content for toggling -->
-	<div class="collapse navbar-collapse" id="navbar">
+	<div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'" ng-click="navCollapsed = true">
 	  <ul class="nav navbar-nav navbar-left">
 	    <li><a ui-sref="home">Home</a></li>
 	    <li><a ui-sref="charity">Charity</a></li>
@@ -67,18 +67,11 @@
 	    <li><a href="http://blog.givago.co/">Blog</a></li>	    
 	  </ul>
 	  <ul class="nav navbar-nav navbar-right visible-xs">
-	    <li><a data-ng-click="openLoginModal()" ng-hide="isAuthenticated()">Sign In</a></li>
-	    <li class="dropdown" dropdown>	      
-	      <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" dropdown-toggle ng-show="isAuthenticated()">
-		My account
-	      </a>
-              <ul class="dropdown-menu" role="menu" role="menu" ng-show="isAuthenticated()">
-		<li><a ui-sref="profile"><i class="fa fa-user"></i> Profile</a></li>
-		<li><a ng-click="openSettingsModal()"><i class="fa fa-sliders"></i> Settings</a></li>
-		<li class="divider"></li>
-		<li><a ng-click="logout()"><i class="fa fa-power-off"></i> Logout</a></li>
-              </ul>
-            </li>            
+	    <li ng-hide="isAuthenticated()"><a data-ng-click="openLoginModal()">Sign In</a></li>  
+	    <li ng-show="isAuthenticated()"><a ui-sref="profile"><i class="fa fa-user"></i> Profile</a></li>
+	    <li ng-show="isAuthenticated()"><a ng-click="openSettingsModal()"><i class="fa fa-sliders"></i> Settings</a></li>
+	    <li ng-show="isAuthenticated()" class="divider"></li>
+	    <li ng-show="isAuthenticated()"><a ng-click="logout()"><i class="fa fa-power-off"></i> Logout</a></li>            
 	  </ul>
 	</div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -92,7 +85,7 @@
           </div>
 	  <div class="first-step tour" ng-show="currentStep === 0">
 	    <p><b>Welcome on givago! If you want to be a change maker, you are at the perfect place!</b></p>
-	    <p>1st: Connect with us trough Facebook, Google, or create an account!</p>
+	    <p><span class="label label-primary">1</span> Connect with us trough Facebook, Google, or create an account!</p>
 	    <a class="btn btn-danger pull-right" ng-click="closeFeatureTour()">I don't want the feature tour</a>
 	  </div>
           <span class="fa-stack fa-2x user-logo dropdown-toggle" dropdown-toggle data-ng-click="openLoginModal()">
@@ -115,9 +108,9 @@
     <div class="footer">
       <div class="container">
 	<ul class="social-logo">
-	  <a href="https://www.facebook.com/givagocharity" class="facebook"><span class="fa fa-facebook-square"></span></a>
-	  <a href="https://plus.google.com/communities/111636364612558887812" class="google"><span class="fa fa-google-plus-square"></span></a>
-	  <a href="https://twitter.com/GIVAGOCHARITY" class="twitter"><span class="fa fa-twitter-square"></span></a>
+	  <li><a target="_blank" href="https://www.facebook.com/givagocharity" class="facebook"><span class="fa fa-facebook-square"></span></a></li>
+	  <li><a target="_blank" href="https://plus.google.com/communities/111636364612558887812" class="google"><span class="fa fa-google-plus-square"></span></a></li>
+	  <li><a target="_blank" href="https://twitter.com/GIVAGOCHARITY" class="twitter"><span class="fa fa-twitter-square"></span></a></li>
 	</ul>
 	<ul>
 	  <li><a ui-sref="legal">Legal</a></li>	  

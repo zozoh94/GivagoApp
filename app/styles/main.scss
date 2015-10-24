@@ -13,6 +13,8 @@ body {
   background: url("../images/skulls.png");
 }
 
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
 .wrapper {
   min-height: 360px;
 }
@@ -394,8 +396,12 @@ body {
   border-color: transparent;
 }
 
-.main-menu .navbar-collapse.collapse.in, .main-menu .navbar-collapse.collapsing {
+.main-menu .navbar-collapse.collapse.in, .main-menu .navbar-collapse.collapse.in-remove, .main-menu .navbar-collapse.collapsing {
   background-color: #F8F8F8;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+  border-color: transparent;
 }
 
 .notifications-center{
@@ -762,6 +768,11 @@ a.btn-connect-option {
   font-size: 2.5em;
 }
 
+.social-logo li {
+  padding-left: 5px!important;
+  padding-right: 5px!important;
+}
+
 .social-logo .google {
   color: #D73D32;
 }
@@ -784,4 +795,33 @@ a.btn-connect-option {
 
 .app-container {
   margin-bottom: 180px;
+}
+
+div.navbar-collapse.collapse {
+  display: block;
+  overflow: hidden;
+  max-height: 0px;
+  -webkit-transition: max-height .3s ease;
+  -moz-transition: max-height .3s ease;
+  -o-transition: max-height .3s ease;
+  transition: max-height .3s ease;
+}
+
+div.navbar-collapse.collapse.in {
+  max-height: 2000px;
+}
+
+.home .social-logo {
+  font-size: 2em;
+  position: fixed;
+  top: 200px;
+}
+
+.home .social-logo > li {
+  font-size: 2em;
+  list-style-type: none;
+}
+
+.app-link {
+  cursor: pointer;
 }

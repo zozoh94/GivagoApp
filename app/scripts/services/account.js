@@ -8,7 +8,7 @@
  * Factory in the givagoApp.
  */
 angular.module('givagoApp')
-  .factory('account', function($rootScope, $http, $auth, $modal, $window, apiUrl, toastr) {
+  .factory('account', function($rootScope, $http, $auth, $modal) {
     var modalInstance;
     return {
       openLoginModal: function ($scope, back) {
@@ -34,5 +34,5 @@ angular.module('givagoApp')
           }
         );
       }
-    }
+    };
   });

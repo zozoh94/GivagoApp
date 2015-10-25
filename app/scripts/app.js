@@ -135,7 +135,7 @@ angular
         $window.localStorage.currentUser = JSON.stringify(response);
         $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);	
       })
-      .error(function(error) {        
+      .error(function() {        
 	$auth.logout()
 	  .then(function() {
 	    $window.localStorage.currentUser = {};

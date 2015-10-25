@@ -13,7 +13,7 @@ angular.module('givagoApp').controller('ModalCtrl', function ($rootScope, $scope
 
   $scope.authenticate = function(provider) {
     $auth.authenticate(provider)
-      .then(function(response) {
+      .then(function() {
         $scope.getProfile();
       })
       .catch(function() {

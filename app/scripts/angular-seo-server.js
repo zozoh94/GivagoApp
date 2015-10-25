@@ -1,3 +1,4 @@
+/* jshint ignore:start */
 var system = require('system');
 
 if (system.args.length == 3) {
@@ -53,3 +54,4 @@ server.listen(port, function (request, response) {
 
 console.log('Listening on ' + port + '...');
 console.log('Press Ctrl+C to stop.');
+/* jshint ignore:end */

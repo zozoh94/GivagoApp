@@ -1,3 +1,4 @@
+/* jshint ignore:start */
 !function(window, document, undefined) {
     var getModule = function(angular) {
         return angular.module('seo', [])
@@ -21,3 +22,4 @@
     else
         getModule(angular);
 }(window, document);
+/* jshint ignore:end */

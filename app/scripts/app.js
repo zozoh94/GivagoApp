@@ -129,21 +129,19 @@ angular
       });
   })
 
-  .run(function($rootScope, $window, $auth) {
-    if ($auth.isAuthenticated()) {
-      var user = $window.localStorage.currentUser;
-
-      try
-      {
-        if(user !== 'undefined') {
-          $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
-	}
-      }
-      catch(e)
-      {
-        console.log('invalid json');
-      }
-    }
+  .run(function($rootScope, $window, $auth, ajax) {
+    ajax.profile()
+      .success(function(response) {
+        $window.localStorage.currentUser = JSON.stringify(response);
+        $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);	
+      })
+      .error(function(error) {        
+	$auth.logout()
+	  .then(function() {
+	    $window.localStorage.currentUser = {};
+	    $rootScope.currentUser = {};
+	  });
+      });   
   })
 
   .run(function($rootScope, $auth){

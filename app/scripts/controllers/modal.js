@@ -12,7 +12,19 @@ angular.module('givagoApp').controller('ModalCtrl', function ($rootScope, $scope
   $scope.mode = 'login';
 
   $scope.authenticate = function(provider) {
-    account.authenticate(provider, $scope, $rootScope);
+    $auth.authenticate(provider)
+      .then(function(response) {
+        $scope.getProfile();
+      })
+      .catch(function() {
+        toastr.error('You have already been connected with another social media or you\'ve already an account on Givago. Please use the correct way to log in');
+	
+	$auth.logout()
+	  .then(function() {
+	    $window.localStorage.currentUser = {};
+	    $rootScope.currentUser = {};
+	  });
+      });
   };
 
   $scope.isAuthenticated = function() {
@@ -34,8 +46,7 @@ angular.module('givagoApp').controller('ModalCtrl', function ($rootScope, $scope
   $scope.login = function() {
     $auth.login({ username: $scope.username, password: $scope.password })
       .then(function() {
-        $scope.getProfile();	
-        toastr.success('You have successfully logged in');
+        $scope.getProfile();	        
       })
       .catch(function(response) {
 	/*jshint camelcase: false */
@@ -73,13 +84,19 @@ angular.module('givagoApp').controller('ModalCtrl', function ($rootScope, $scope
   };
 
   $scope.getProfile = function() {
-    account.getProfile()
+    ajax.profile()
       .success(function(response) {
         $window.localStorage.currentUser = JSON.stringify(response);
         $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
+	toastr.success('You have successfully logged in');
       })
       .error(function(error) {
         toastr.error(error.message);
+	$auth.logout()
+	  .then(function() {
+	    $window.localStorage.currentUser = {};
+	    $rootScope.currentUser = {};
+	  });
       }); 
   };
   

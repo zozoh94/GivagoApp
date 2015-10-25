@@ -48,6 +48,9 @@ angular.module('givagoApp')
       changePassword: function(password1, password2, oldPassword) {
 	return $http.post(apiUrl+'/auth/password/change/', { 'new_password1' : password1, 'new_password2' : password2, 'old_password' : oldPassword });
       },
+      profile: function() {
+        return $http.get(apiUrl+'/auth/user/');
+      },
       editProfile: function(username, email) {
 	return $http.put(apiUrl+'/auth/user/', {username : username, email : email });
       },

@@ -745,6 +745,12 @@ a.btn-connect-option {
   min-height: 700px;
 }
 
+@media (max-width: 480px) {  
+  .home {
+    min-height: 430px;
+  }
+}
+
 .footer{
   position: relative;
   text-align: center;
@@ -815,8 +821,19 @@ div.navbar-collapse.collapse.in {
   font-size: 2em;
   position: fixed;
   top: 200px;
+  padding-left: 0px;
+  padding-right: 10px;
+  right: 0px;
 }
-
+@media (max-width: 767px) {
+  .home .social-logo {
+    display: none;
+  }
+  .social-logo {
+    font-size: 4.5em;
+  }
+}
+  
 .home .social-logo > li {
   font-size: 2em;
   list-style-type: none;

@@ -34,8 +34,6 @@ angular.module('givagoApp')
     
     $scope.logout = function()
     {
-      $log.info('Logout');
-
       if (!$auth.isAuthenticated()) {
         return;
       }

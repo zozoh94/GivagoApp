@@ -7,7 +7,7 @@
  * # ProfileCtrl
  * Controller of the givagoApp to see and edit client profile
  */
-angular.module('givagoApp').controller('ProfileCtrl', function ($scope, $modal, $window, $rootScope, account, toastr){
+angular.module('givagoApp').controller('ProfileCtrl', function ($scope, $modal, $window, $rootScope, ajax, toastr){
 
   $scope.goToEditProfile = function() {
     var modalInstance = $modal.open({
@@ -27,7 +27,7 @@ angular.module('givagoApp').controller('ProfileCtrl', function ($scope, $modal, 
   };
   
   $scope.getProfile = function() {
-    account.getProfile()
+    ajax.profile()
       .success(function(response) {
         $window.localStorage.currentUser = JSON.stringify(response);
         $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);

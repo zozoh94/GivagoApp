@@ -1,6 +1,7 @@
 # robotstxt.org
 
 User-agent: *
+Sitemap: http://givago.co/sitemap.xml
 Allow: /
 Allow: /charity
 Allow: /sponsor

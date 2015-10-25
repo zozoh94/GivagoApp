@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" ng-app="givagoApp">
+<html class="no-js" ng-app="givagoApp" lang="en">
   <head>
     <meta charset="utf-8">
     <title>Givago</title>
@@ -92,7 +92,6 @@
           <span class="fa-stack fa-2x user-logo dropdown-toggle" dropdown-toggle data-ng-click="openLoginModal()">
             <i class="fa bg fa-circle fa-stack-2x"></i>
             <i class="fa logo fa-user fa-stack-1x fa-inverse"></i>
-            <img ng-src="{{ userProfilePic }}" >
           </span>
           <ul id="user-menu" class="dropdown-menu" role="menu" ng-show="isAuthenticated()">
             <li><a ui-sref="profile"><i class="fa fa-user"></i> Profile</a></li>

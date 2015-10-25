@@ -27,7 +27,8 @@ angular
     'youtube-embed',
     'ngTagsInput',
     'toastr',
-    'ipCookie'
+    'ipCookie',
+    'seo'
   ])
 
   .constant('apiUrl', apiUrl)

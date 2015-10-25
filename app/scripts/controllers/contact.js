@@ -8,6 +8,8 @@
  * Controller of the contact pages
  */
 angular.module('givagoApp').controller('ContactCtrl', function ($scope, $state, toastr, ajax) {
+  $scope.htmlReady();
+  
   $scope.contactCharity = function() {
     ajax.contactCharity($scope.firstName, $scope.lastName, $scope.email, $scope.phone, $scope.charityName, $scope.position, $scope.comment).success(function() {      
       toastr.success('An email has been sent.');

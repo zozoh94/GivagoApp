@@ -8,7 +8,7 @@
  * Controller of the menu
  */
 angular.module('givagoApp')
-  .controller('MenuCtrl', function ($scope, $rootScope, $window, $auth, $log, account, $modal, toastr) {
+  .controller('MenuCtrl', function ($scope, $rootScope, $window, $auth, $state, account, $modal, toastr) {
     if($auth.isAuthenticated() && $rootScope.currentStep === 0) {
       $rootScope.currentStep = 1;
     }
@@ -44,6 +44,7 @@ angular.module('givagoApp')
           $rootScope.currentUser = {};
 
           toastr.info('You have been logged out.');
+	  $state.go('home');
         });
     };
 

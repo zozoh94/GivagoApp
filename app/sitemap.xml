@@ -18,5 +18,15 @@
     <loc>http://givago.co/#!/community/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>http://givago.co/#!/legal/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url> 
+  <url>
+    <loc>http://givago.co/#!/give/Tree/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </url> 
 </urlset>  

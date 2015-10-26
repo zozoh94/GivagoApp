@@ -14,7 +14,7 @@
 	<p><span class="label label-primary">2</span> Select your donation.</p>
 	<a class="btn btn-danger pull-right" ng-click="closeFeatureTour()">I don't want the feature tour</a>
       </div>
-      <span class="fa-stack fa-5x" ng-repeat="gift in gifts" ui-sref="mosaic({gift: gift.id})">
+      <span class="fa-stack fa-5x" ng-repeat="gift in gifts" ui-sref="mosaic({gift: gift.name})">
 	<i class="fa fa-circle fa-stack-2x"></i>
 	<i class="{{ gift.icon }} fa-stack-1x"></i>
 	<span class="player-label shadow1">{{ gift.name }}</span>

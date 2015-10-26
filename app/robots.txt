@@ -6,4 +6,6 @@ Allow: /
 Allow: /charity
 Allow: /sponsor
 Allow: /community
+Allow: /legal
+Allow: /give/Tree
 Disallow: /

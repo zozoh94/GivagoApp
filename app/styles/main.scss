@@ -657,11 +657,23 @@ a.btn-connect-option {
   right: 100px;
 }
 
+@media (max-width: 480px) {
+  .first-step {
+    width: 266px;
+  }
+}
+
 .second-step {
   left: 50%;
   margin-left: -120px;
   width: 240px;
   top: 575px;
+}
+
+@media (max-width: 480px) {
+  .second-step {
+    top: 447px;
+  }
 }
 
 .third-step {
@@ -725,8 +737,8 @@ a.btn-connect-option {
   position: absolute;
   width: 100%;
   left: 50px;
-  bottom: -50px;
-  font-size: 0.4em;
+  bottom: -47px;
+  font-size: 0.3em;
 }
 
 @media (max-width: 480px) {
@@ -747,7 +759,7 @@ a.btn-connect-option {
 
 @media (max-width: 480px) {  
   .home {
-    min-height: 430px;
+    min-height: 460px;
   }
 }
 

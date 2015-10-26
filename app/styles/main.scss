@@ -247,6 +247,12 @@ body {
   padding-top: 70px;
 }
 
+@media (max-width: 480px) {
+  #global-container {
+    padding-top: 50px;
+  }
+}
+
 .content-container {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
   padding: 20px 50px;
@@ -611,7 +617,7 @@ a.btn-connect-option {
   .title{
     width: 70%;
     margin: auto;
-    margin-top: 60px;
+    margin-top: 20px;
   }
 }
 
@@ -672,7 +678,7 @@ a.btn-connect-option {
 
 @media (max-width: 480px) {
   .second-step {
-    top: 447px;
+    top: 380px;
   }
 }
 
@@ -757,9 +763,9 @@ a.btn-connect-option {
   min-height: 700px;
 }
 
-@media (max-width: 480px) {  
+@media (max-width: 480px) {
   .home {
-    min-height: 460px;
+    min-height: 400px;
   }
 }
 
@@ -842,7 +848,7 @@ div.navbar-collapse.collapse.in {
     display: none;
   }
   .social-logo {
-    font-size: 4.5em;
+    font-size: 3.7em;
   }
 }
   
@@ -853,4 +859,16 @@ div.navbar-collapse.collapse.in {
 
 .app-link {
   cursor: pointer;
+}
+
+.staffs .staff-picture, .staffs .staff-content {
+  float: left;
+}
+
+.staffs img {
+  width: 160px;
+}
+
+.staffs .staff-content {
+  margin: 20px;
 }

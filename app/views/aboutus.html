@@ -1,0 +1,20 @@
+<div class="container">
+  <h2 class="title mini" ui-sref="home"><img src="images/givago-logo.png" alt="Givago" /></h2>
+  <div class="parallax-player">
+    <div class="container content-container light-bg">
+      <h1>The Staff</h1>
+      <div class="staffs" ng-repeat="staff in staffs">	
+	<div class="col-md-6">
+	  <div class="staff-picture">
+	    <img ng-src="{{ staff.picture }}" class="img-thumbnail img-circle" alt="Picture of {{ staff.first_name }}">
+	  </div>
+	  <div class="staff-content">
+	    <p><b>{{ staff.first_name }}</b> - {{ staff.position }}</p>
+	    <p><span class="fa fa-quote-left"></span> {{ staff.bio }} <span class="fa fa-quote-right"></span>
+	    <p ng-show="staff.linkedin"><a target="_blank" href="{{ staff.linkedin }}">Follow me on Linked<span class="fa fa-linkedin-square"></span></a></p>	    
+	  </div>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>

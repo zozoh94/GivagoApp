@@ -14,7 +14,8 @@
 	<p><span class="label label-primary">3</span> <span ng-hide="startMode">Or </span>Watch a short video<span ng-hide="startMode"> (Max 1 minute)</span>.</p>
 	<a class="btn btn-danger pull-right" ng-click="closeFeatureTour()">I don't want the feature tour</a>
       </div>
-      <div ng-show="startMode">"<div class="dailymotion-widget" data-placement="560c7267ad02140014ed2af2"></div></div>    
+      <div ng-show="adsBlocked" class="alert alert-danger"><p>Please disable ads blocker</p></div>
+      <div id="dailymotion-ads" ng-show="startMode"><div class="dailymotion-widget" data-placement="560c7267ad02140014ed2af2"></div></div>    
       <ul class="list-unstyled video-list-thumbs row" ng-hide="startMode">
         <li ng-repeat="ad in ads" class="col-md-6">
           <a title="{{ ad.name }}" ui-sref="player({ gift: uiRouterState.params.gift, ad : ad.id })">

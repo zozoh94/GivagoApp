@@ -8,4 +8,5 @@ Allow: /sponsor
 Allow: /community
 Allow: /legal
 Allow: /give/Tree
+Allow: /about-us
 Disallow: /

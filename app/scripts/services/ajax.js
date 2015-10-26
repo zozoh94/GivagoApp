@@ -62,6 +62,9 @@ angular.module('givagoApp')
       },
       contactCommunity: function(firstName, lastName, email, phone, comment) {
 	return $http.post(apiUrl+'/auth/community/', {'first_name': firstName, 'last_name': lastName, 'email': email, 'phone': phone, 'comment': comment });
+      },
+      staff: function() {
+	return $http.get(apiUrl+'/staff/');
       }
     };
   });

@@ -12,8 +12,7 @@ var apiUrl = 'http://api.localhost:8000';
  */
 angular
   .module('givagoApp', [
-    'ngAnimate',
-    'ngCookies',
+    'ngAnimate',   
     'ngResource',
     'ngSanitize',
     'ngTouch',
@@ -127,6 +126,11 @@ angular
       .state('legal', {
 	url: '/legal',
         templateUrl: 'views/legal.html'
+      })
+      .state('aboutus', {
+	url: '/about-us',	
+	templateUrl: 'views/aboutus.html',
+	controller: 'AboutUsCtrl'
       });
   })
 

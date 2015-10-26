@@ -7,8 +7,18 @@
  * # MosaicCtrl
  * Controller of the givagoApp ads mosaic
  */
-angular.module('givagoApp').controller('MosaicCtrl', function ($rootScope, $scope, $state, $auth, $stateParams, $window, ajax, account, toastr, startMode, ipCookie){
+angular.module('givagoApp').controller('MosaicCtrl', function ($rootScope, $scope, $state, $auth, $stateParams, $window, $timeout, ajax, account, toastr, startMode, ipCookie){
   $scope.startMode = startMode;
+  $scope.adsBlocked = false;
+  $scope.htmlReady();
+  
+  $rootScope.$on('$viewContentLoaded', function() {
+    $timeout(function() {
+      if(angular.element(document.getElementById('dailymotion-ads'))[0].offsetHeight === 0) {
+	$scope.adsBlocked = true;
+      }
+    }, 2000);
+  });
 
   $scope.clickApp = function(app) {
     ajax.appClick(app.id, $stateParams.gift).success(function(response) {

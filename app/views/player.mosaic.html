@@ -6,7 +6,7 @@
 	<p><span class="label label-primary">3</span> Download and test an application.</p>
 	<a class="btn btn-danger pull-right" ng-click="closeFeatureTour()">I don't want the feature tour</a>
       </div>
-      <a ng-click="clickApp(app)" class="app-link">Click here to test {{ app.name }}.</a>
+      <a class="btn btn-primary btn-block" target="_blank" href="{{ apiUrl }}/app/{{ app.id }}/click/{{ uiRouterState.params.gift }}/{{ currentUser.username }}/" class="app-link">Click here to test {{ app.name }}.</a>
       <p>To validate your gift please fully install the application</p>
     </div>
     <div class="container col-md-8 col-md-offset-2" ng-hide="isSmartphone() && startMode === true">

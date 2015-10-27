@@ -7,7 +7,7 @@
  * # MosaicCtrl
  * Controller of the givagoApp ads mosaic
  */
-angular.module('givagoApp').controller('MosaicCtrl', function ($rootScope, $scope, $state, $auth, $stateParams, $window, $timeout, ajax, account, toastr, startMode, ipCookie){
+angular.module('givagoApp').controller('MosaicCtrl', function ($rootScope, $scope, $state, $auth, $stateParams, $window, $timeout, ajax, account, toastr, startMode, ipCookie, apiUrl){
   $scope.startMode = startMode;
   $scope.adsBlocked = false;
   $scope.htmlReady();
@@ -20,13 +20,9 @@ angular.module('givagoApp').controller('MosaicCtrl', function ($rootScope, $scop
     }, 2000);
   });
 
-  $scope.clickApp = function(app) {
-    ajax.appClick(app.id, $stateParams.gift).success(function(response) {
-      $window.open(app.link+'&cid='+response.cid);
-    });
-  };
+  $scope.apiUrl = apiUrl;
   
-  $scope.isSmartphone = function(){    
+  $scope.isSmartphone = function(){
     return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   };
   

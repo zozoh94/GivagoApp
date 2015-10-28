@@ -1,18 +1,33 @@
 <div class="container">
   <h2 class="title mini" ui-sref="home"><img src="images/givago-logo.png" alt="Givago" /></h2>
   <div class="parallax-player">
-    <div class="container content-container light-bg">
-      <h1>The dream team</h1>
-      <div class="staffs" ng-repeat="staff in staffs">	
-	<div class="col-md-6">
-	  <div class="staff-picture">
-	    <img ng-src="{{ staff.picture }}" class="img-thumbnail img-circle" alt="Picture of {{ staff.first_name }}">
-	  </div>
-	  <div class="staff-content">
-	    <p><b>{{ staff.first_name }}</b> - {{ staff.position }}</p>
-	    <p><span class="fa fa-quote-left"></span> {{ staff.bio }} <span class="fa fa-quote-right"></span>
-	    <p ng-show="staff.linkedin"><a target="_blank" href="{{ staff.linkedin }}">Follow me on Linked<span class="fa fa-linkedin-square"></span></a></p>	    
-	  </div>
+    <div class="container content-container presentation-contact-container">
+      <h1>More about us</h1>
+      <p>Nowadays, more and more people need help while fewer and fewer can afford to give. Based on this observation, the goal of Givago is to propose an alternative form of grants, different from the traditional donation system such as giving money or volunteering.
+	With Givago, by only taking a few seconds of your time, you can support causes that care for you without spending any money! You can make a concrete action to turn the world into a better place.<br/>The current version of Givago is only the 1st step of a long journey!<br/>Our goal is to enhance a better world with the power of Internet.</p>
+      <p class="text-center"><i>Unity makes strength!</p>
+      <p>Givago, at the moment allows giving to charity for free. Later on, you’ll be able to create local and global actions, for the benefice of the entire community.</p>
+    </div>
+    <div class="container content-container contact-container light-bg">
+      <h2>The dream team</h2>
+      <div class="col-md-12">
+	<div class="col-sm-3 hidden-xs">
+	  <img src="/images/enzo.jpg" class="img-thumbnail img-circle" alt="Picture of Enzo">
+	</div>
+	<div class="col-sm-9 col-xs-12">
+	  <h3><b>Enzo</b> - Chief Technical Officer - CTO</h3>
+	  <p><span class="fa fa-quote-left"></span> I'm very enthusiast about developing Givago. In fact, this website is a little revolution, allowing to do a little for the planet, everyday and everything for free! At the same time, Givago enables gathering people around the same goals, and enhancing new connections that make sense!When I'm not working on my computer, I'm rocking out on my guitar! <span class="fa fa-quote-right"></span></p>
+	  <p><a target="_blank" href="https://fr.linkedin.com/pub/enzo-hamelin/60/5a7/a29">Follow me on Linked<span class="fa fa-linkedin-square"></span></a></p>	    
+	</div>	  
+      </div>
+      <div class="col-sm-12">
+	<div class="col-sm-9 col-xs-12">
+	  <h3><b>Ivan</b> - Chief Executive Officer - CEO</h3>
+	  <p><span class="fa fa-quote-left"></span> I'm a young guy that like surfing and travelling as much as I can. I'm always up for a drink with friends or people, sharing all the great stories we have to tell. I undertake new projects to make my life and your life richer as well as easier! I'm the one who like to look for and come up with solutions to every kind of matter. As an entrepreneur, I seek to give a human meaning to my career path. Relationships with others are crucial for me. I've started another company years ago, where I decided to take my social responsibility by making sure that all of the components were ethical. We also have a tree planted for each bracelet sold on <a href="http://www.rimbaudcollection.com">www.rimbaudcollection.com</a>. Later on, I've been looking for a way to plant more trees, quicker. And here I am, hoping that you'll be part of the adventure! <span class="fa fa-quote-right"></span></p>
+	  <p><a target="_blank" href="https://uk.linkedin.com/in/rimbaud">Follow me on Linked<span class="fa fa-linkedin-square"></span></a></p>	    
+	</div>
+	<div class="col-sm-3 hidden-xs">
+	  <img src="/images/ivan.jpg" class="img-thumbnail img-circle" alt="Picture of Ivan">
 	</div>
       </div>
     </div>

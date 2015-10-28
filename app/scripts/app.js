@@ -21,13 +21,13 @@ angular
     'ngStorage',
     'ui.bootstrap',
     'ui.router',
+    'ui.router.title',
     'ui.bootstrap.showErrors',
     'validation.match',
     'youtube-embed',
     'ngTagsInput',
     'toastr',
-    'ipCookie',
-    'seo'
+    'ipCookie'
   ])
 
   .constant('apiUrl', apiUrl)
@@ -72,7 +72,7 @@ angular
     });
   })
 
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
     $urlRouterProvider.otherwise('/');
 
@@ -85,33 +85,51 @@ angular
       .state('sponsor', {
         url: '/sponsor',
         templateUrl: 'views/sponsor.html',
-	controller: 'ContactCtrl'
+	controller: 'ContactCtrl',
+	resolve: {
+	  $title: function() { return 'Sponsor'; }
+	}
       })
       .state('charity', {
         url: '/charity',
         templateUrl: 'views/charity.html',
-	controller: 'ContactCtrl'
+	controller: 'ContactCtrl',
+	resolve: {
+	  $title: function() { return 'Charity'; }
+	}
       })
       .state('community', {
         url: '/community',
         templateUrl: 'views/community.html',
-	controller: 'ContactCtrl'
+	controller: 'ContactCtrl',
+	resolve: {
+	  $title: function() { return 'Community'; }
+	}
       })
       .state('mosaic', {
         url: '/give/:gift/',
         templateUrl: 'views/player.mosaic.html',
-        controller: 'MosaicCtrl'
+        controller: 'MosaicCtrl',
+	resolve: {
+	  $title: function() { return 'Ads'; }
+	}
       })
       .state('player', {
         url: '/give/:gift/ad/:ad/',
         templateUrl: 'views/player.video.html',
         controller: 'PlayerCtrl',
-        protected: true
+        protected: true,
+	resolve: {
+	  $title: function() { return 'Player'; }
+	}
       })
       .state('verifyEmail', {
         url: '/verify-email/:key/',
         templateUrl: 'views/home.html',
-        controller: 'VerifyEmailCtrl'
+        controller: 'VerifyEmailCtrl',
+	resolve: {
+	  $title: function() { return 'Verify you email address'; }
+	}
       })
       .state('resetConfirm', {
         url: '/reset/:uid/:token/',
@@ -121,17 +139,27 @@ angular
       .state('profile', {
 	url: '/profile',
         templateUrl: 'views/profile.html',
-        controller: 'ProfileCtrl'
+        controller: 'ProfileCtrl',
+	resolve: {
+	  $title: function() { return 'Profile'; }
+	}
       })
       .state('legal', {
 	url: '/legal',
-        templateUrl: 'views/legal.html'
+        templateUrl: 'views/legal.html',
+	resolve: {
+	  $title: function() { return 'Legal'; }
+	}
       })
       .state('aboutus', {
 	url: '/about-us',	
 	templateUrl: 'views/aboutus.html',
-	controller: 'AboutUsCtrl'
+	resolve: {
+	  $title: function() { return 'About Us'; }
+	}
       });
+
+    $locationProvider.html5Mode(true);
   })
 
   .run(function($rootScope, $window, $auth, ajax) {

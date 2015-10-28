@@ -1,9 +1,9 @@
 <!doctype html>
 <html class="no-js" ng-app="givagoApp" lang="en">
   <head>
-    <meta charset="utf-8">
-    <title>Givago | Give a free gift to the World! | Home</title>
     <meta name="fragment" content="!" />
+    <meta charset="utf-8">
+    <title ng-bind="($title || 'Home') + ' - Givago - Make a free gift to the World!'">Givago - Make a free gift to the World!</title>
     <meta name="description" content="GIVAGO aim is to enable all people the ability to donate to charity for free">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -46,8 +46,8 @@
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="navbar-header">
 	  <div class="first-step tour" ng-show="isXs() && currentStep === 0 && navCollapsed">
-	    <p><b>Welcome on givago! If you want to be a change maker, you are at the perfect place!</b></p>
-	    <p><span class="label label-primary">1</span> Connect with us trough Facebook, Google, or create an account!</p>
+	    <p><b>Welcome on Givago! If you want to be a change maker, you are at the perfect place!</b></p>
+	    <p><span class="label label-primary">1</span> Connect with us via Facebook, Google, or create an account!</p>
 	    <a class="btn btn-danger pull-right" ng-click="closeFeatureTour()">I don't want the feature tour</a>
 	  </div>
 	  <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
@@ -86,8 +86,8 @@
             <span>{{currentUser.username}}</span>
           </div>
 	  <div class="first-step tour" ng-show="currentStep === 0">
-	    <p><b>Welcome on givago! If you want to be a change maker, you are at the perfect place!</b></p>
-	    <p><span class="label label-primary">1</span> Connect with us trough Facebook, Google, or create an account!</p>
+	    <p><b>Welcome on Givago! If you want to be a change maker, you are at the perfect place!</b></p>
+	    <p><span class="label label-primary">1</span> Connect with us via Facebook, Google, or create an account!</p>
 	    <a class="btn btn-danger pull-right" ng-click="closeFeatureTour()">I don't want the feature tour</a>
 	  </div>
           <span class="fa-stack fa-2x user-logo dropdown-toggle" dropdown-toggle data-ng-click="openLoginModal()">
@@ -334,6 +334,7 @@
     <script src="bower_components/q/q.js"></script>
     <script src="bower_components/satellizer/satellizer.js"></script>
     <script src="bower_components/angular-cookie/angular-cookie.js"></script>
+    <script src="bower_components/angular-ui-router-title/angular-ui-router-title.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -355,7 +356,6 @@
     <script src="scripts/controllers/contact.js"></script>
     <script src="scripts/controllers/parallax.js"></script>
     <script src="scripts/controllers/aboutus.js"></script>
-    <script src="scripts/angular-seo.js"></script>
     <!-- endbuild -->
   </body>
 </html>

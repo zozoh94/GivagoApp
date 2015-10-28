@@ -10,7 +10,6 @@
 angular.module('givagoApp').controller('MosaicCtrl', function ($rootScope, $scope, $state, $auth, $stateParams, $window, $timeout, ajax, account, toastr, startMode, ipCookie, apiUrl){
   $scope.startMode = startMode;
   $scope.adsBlocked = false;
-  $scope.htmlReady();
   
   $rootScope.$on('$viewContentLoaded', function() {
     $timeout(function() {

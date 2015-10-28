@@ -10,7 +10,6 @@
 angular.module('givagoApp').controller('HomeCtrl', function ($rootScope, $scope, $document, $auth, $state, ajax){
   ajax.gifts().success(function(data) {
     $scope.gifts = data;
-    $scope.htmlReady();
   });
   $scope.scrollToContent = function()
   {

@@ -7,16 +7,13 @@
  * # ProfileCtrl
  * Controller of the givagoApp to see and edit client profile
  */
-angular.module('givagoApp').controller('ProfileCtrl', function ($scope, $modal, $window, $rootScope, ajax, toastr){
+angular.module('givagoApp').controller('ProfileCtrl', function ($scope, $modal){
 
   $scope.goToEditProfile = function() {
-    var modalInstance = $modal.open({
+    $modal.open({
       templateUrl: 'editProfile.html',
       controller: 'ProfileModalCtrl'   
-    });
-    modalInstance.result.then(function() {
-      $scope.getProfile();
-    });
+    });    
   };
 
   $scope.goToChangePassword = function() {
@@ -25,24 +22,15 @@ angular.module('givagoApp').controller('ProfileCtrl', function ($scope, $modal, 
       controller: 'ProfileModalCtrl'     
     });      
   };
-  
-  $scope.getProfile = function() {
-    ajax.profile()
-      .success(function(response) {
-        $window.localStorage.currentUser = JSON.stringify(response);
-        $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
-      })
-      .error(function(error) {
-        toastr.error(error.message);
-      }); 
-  };
-
-  $scope.getProfile();
 });
 
-angular.module('givagoApp').controller('ProfileModalCtrl', function ($scope, $modalInstance, $rootScope, ajax, toastr) {
+angular.module('givagoApp').controller('ProfileModalCtrl', function ($scope, $modalInstance, $rootScope, $window, ajax, toastr) {
   $scope.username = $rootScope.currentUser.username;
-  $scope.email = $rootScope.currentUser.email;
+  $scope.firstName = $rootScope.currentUser.first_name; // jshint ignore:line
+  $scope.lastName = $rootScope.currentUser.last_name; // jshint ignore:line
+  $scope.age = $rootScope.currentUser.age;
+  $scope.gender = $rootScope.currentUser.gender;
+  $scope.incomeLevel = $rootScope.currentUser.income_level; // jshint ignore:line
   
   $scope.changePassword = function() {
     ajax.changePassword($scope.password, $scope.confirmPassword, $scope.oldPassword).success(function(response) {       
@@ -57,9 +45,9 @@ angular.module('givagoApp').controller('ProfileModalCtrl', function ($scope, $mo
   };
 
   $scope.editProfile = function() {
-    ajax.editProfile($scope.username, $scope.email).success(function() {
-      $rootScope.currentUser.username = $scope.username;
-      $rootScope.currentUser.email = $scope.email;        
+    ajax.editProfile($scope.username, $scope.firstName, $scope.lastName, $scope.age, $scope.gender, $scope.incomeLevel).success(function(response) {
+      $window.localStorage.currentUser = JSON.stringify(response);
+      $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
       $modalInstance.close();
       toastr.success('You have updated your profile.');
     }).error(function(response) {

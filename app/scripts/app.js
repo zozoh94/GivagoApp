@@ -21,7 +21,6 @@ angular
     'ngStorage',
     'ui.bootstrap',
     'ui.router',
-    'ui.router.title',
     'ui.bootstrap.showErrors',
     'validation.match',
     'youtube-embed',
@@ -80,14 +79,19 @@ angular
       .state('home', {
         url: '/',
         templateUrl: 'views/home.html',
-        controller: 'HomeCtrl'
+        controller: 'HomeCtrl',
+	resolve: {	  
+	  $canUrl: function() { return 'http://givago.co'; }
+	}
       })
       .state('sponsor', {
         url: '/sponsor',
         templateUrl: 'views/sponsor.html',
 	controller: 'ContactCtrl',
-	resolve: {
-	  $title: function() { return 'Sponsor'; }
+	resolve: {	  
+	  $title: function() { return 'Sponsor'; },
+	  $description: function() { return 'Givago is made for you! Contact us for more information. Together, let’s make a difference. We just need to start from somewhere.'; },
+	  $canUrl: function() { return 'http://givago.co/sponsor'; }
 	}
       })
       .state('charity', {
@@ -95,7 +99,9 @@ angular
         templateUrl: 'views/charity.html',
 	controller: 'ContactCtrl',
 	resolve: {
-	  $title: function() { return 'Charity'; }
+	  $title: function() { return 'Charity'; },
+	  $description: function() { return 'Givago wants to support charities! Please contact us if you have some projects, and together with the community we will try our best to help you.'; },
+	  $canUrl: function() { return 'http://givago.co/charity'; }	  
 	}
       })
       .state('community', {
@@ -103,24 +109,28 @@ angular
         templateUrl: 'views/community.html',
 	controller: 'ContactCtrl',
 	resolve: {
-	  $title: function() { return 'Community'; }
+	  $title: function() { return 'Community'; },
+	  $description: function() { return 'Givago wants to support the community. So please contact us if you have any project, and together with the community we will try our best to turn it into a reality!'; },
+	  $canUrl: function() { return 'http://givago.co/community'; }
 	}
       })
       .state('mosaic', {
-        url: '/give/:gift/',
+        url: '/give/:gift',
         templateUrl: 'views/player.mosaic.html',
         controller: 'MosaicCtrl',
 	resolve: {
-	  $title: function() { return 'Ads'; }
+	  $title: function() { return 'Ads'; },
+	  $canUrl: function($stateParams) { return 'http://givago.co/give/'+$stateParams.gift; }	
 	}
       })
       .state('player', {
-        url: '/give/:gift/ad/:ad/',
+        url: '/give/:gift/ad/:ad',
         templateUrl: 'views/player.video.html',
         controller: 'PlayerCtrl',
         protected: true,
 	resolve: {
-	  $title: function() { return 'Player'; }
+	  $title: function() { return 'Player'; },
+	  $canUrl: function($stateParams) { return 'http://givago.co/give/'+$stateParams.gift+'/ad/'+$stateParams.ad; }
 	}
       })
       .state('verifyEmail', {
@@ -148,14 +158,16 @@ angular
 	url: '/legal',
         templateUrl: 'views/legal.html',
 	resolve: {
-	  $title: function() { return 'Legal'; }
+	  $title: function() { return 'Legal'; },
+	  $canUrl: function($stateParams) { return 'http://givago.co/legal'; }	
 	}
       })
       .state('aboutus', {
 	url: '/about-us',	
 	templateUrl: 'views/aboutus.html',
 	resolve: {
-	  $title: function() { return 'About Us'; }
+	  $title: function() { return 'About Us'; },
+	  $canUrl: function($stateParams) { return 'http://givago.co/about-us'; }	
 	}
       });
 
@@ -198,4 +210,30 @@ angular
       $rootScope.currentStep = -1;
       ipCookie('featureTour', true, { expires: 3000 });
     };
-  });
+  })
+  .run(['$rootScope', '$timeout', '$state', function($rootScope, $timeout, $state) {
+
+    $rootScope.$on('$stateChangeSuccess', function() {
+      var title = getTitleValue($state.$current.locals.globals.$title);
+      var description = getDescriptionValue($state.$current.locals.globals.$description);
+      var canUrl = getCanUrlValue($state.$current.locals.globals.$canUrl);
+      
+      $timeout(function() {
+	$rootScope.$title = title;
+	$rootScope.$description = description;
+	$rootScope.$canUrl = canUrl;
+      });
+    });
+
+    function getTitleValue(title) {
+      return angular.isFunction(title) ? title() : title;
+    }
+
+    function getDescriptionValue(description) {
+      return angular.isFunction(description) ? description() : description;
+    }
+
+    function getCanUrlValue(canUrl) {
+      return angular.isFunction(canUrl) ? canUrl() : canUrl;
+    }
+  }]);

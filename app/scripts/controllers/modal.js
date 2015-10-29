@@ -7,7 +7,7 @@
  * # ModalCtrl
  * Controller of the givagoApp's main modal which deals with authentication
  */
-angular.module('givagoApp').controller('ModalCtrl', function ($rootScope, $scope, $auth, $window, $stateParams, account, ajax, toastr){
+angular.module('givagoApp').controller('ModalCtrl', function ($rootScope, $scope, $auth, $window, $stateParams, $modalInstance, account, ajax, toastr){
 
   $scope.mode = 'login';
 
@@ -15,6 +15,7 @@ angular.module('givagoApp').controller('ModalCtrl', function ($rootScope, $scope
     $auth.authenticate(provider)
       .then(function() {
         $scope.getProfile();
+	$modalInstance.close();
       })
       .catch(function() {
         toastr.error('You have already been connected with another social media or you\'ve already an account on Givago. Please use the correct way to log in');
@@ -46,7 +47,8 @@ angular.module('givagoApp').controller('ModalCtrl', function ($rootScope, $scope
   $scope.login = function() {
     $auth.login({ username: $scope.username, password: $scope.password })
       .then(function() {
-        $scope.getProfile();	        
+        $scope.getProfile();
+	$modalInstance.close();
       })
       .catch(function(response) {
 	/*jshint camelcase: false */
@@ -64,7 +66,7 @@ angular.module('givagoApp').controller('ModalCtrl', function ($rootScope, $scope
       'password1': $scope.password,
       'password2': $scope.confirmPassword	
     }).success(function() {
-      toastr.success('Account created.');
+      toastr.success('Account created. Check your emails.');
       $scope.goToLogin();
     })
       .catch(function(response) {

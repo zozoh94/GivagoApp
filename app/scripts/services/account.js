@@ -25,14 +25,14 @@ angular.module('givagoApp')
 	  backdrop: backdrop
         });
 
-        $scope.$watch(
+	/*        $scope.$watch(
           $auth.isAuthenticated,
           function(newVal){
             if(newVal === true){
               modalInstance.close();
 	    }
           }
-        );
+        );*/
       }
     };
   });

@@ -3,14 +3,28 @@
   <div class="parallax-player">
     <div class="container content-container light-bg">
       <div class="profile">
-	<h1>My profile</h1>
-	<p>My username : {{ currentUser.username }}</p>
-	<p>My email : {{ currentUser.email }}</p>
-	<p>Number of ads viewed : {{ currentUser.number_ads_viewed }}</p>
-	<p>Number of different ads viewed : {{ currentUser.number_different_ads_viewed }}</p>
-	<p>Number of app installed : {{ currentUser.number_app_installed }}</p>
-	<a ng-click="goToEditProfile()" class="btn btn-primary">Edit my profile</a>
-	<a ng-click="goToChangePassword()" class="btn btn-success">Change my password</a>
+	<h1>Profile</h1>
+	<div class="col-md-6">
+	  <h2>Generals informations</h2>
+	  <p>Username: {{ currentUser.username }}</p>
+	  <p>Email: {{ currentUser.email }}</p>
+	  <p>First name: {{ currentUser.first_name }}</p>
+	  <p>Last name: {{ currentUser.last_name }}</p>
+	  <p>Age: {{ currentUser.age }}<span ng-show="!currentUser.gender">Undefined</span></p>
+	  <p>Gender: <span ng-show="currentUser.gender === 'M'">Male</span><span ng-show="currentUser.gender === 'F'">Female</span><span ng-show="!currentUser.gender">Undefined</span></p>
+	  <p>Income level: <span ng-show="currentUser.income_level === 1">Low</span><span ng-show="currentUser.income_level === 2">Medium</span><span ng-show="currentUser.income_level === 3">High</span><span ng-show="!currentUser.income_level">Undefined</span></p>
+	  <h2>Stats</h2>
+	  <p>Number of ads viewed: {{ currentUser.number_ads_viewed }}</p>
+	  <p>Number of different ads viewed: {{ currentUser.number_different_ads_viewed }}</p>
+	  <p>Number of app installed: {{ currentUser.number_app_installed }}</p>
+	</div>	
+	<div class="col-md-6">
+	  <img class="img-thumbnail img-responsive" ng-src="{{ currentUser.avatar }}" alt="Profile picture of {{ currentUser.username }}"></img>"
+	</div>
+	<div class="col-md-12">
+	  <a ng-click="goToEditProfile()" class="btn btn-primary">Edit my profile</a>
+	  <a ng-click="goToChangePassword()" class="btn btn-success">Change my password</a>
+	</div>
       </div>
       <script type="text/ng-template" id="editProfile.html">
 	<div class="modal-body" style="text-align: center">
@@ -30,16 +44,26 @@
             <div class="form-group" show-errors="{ showSuccess: true }">
               <div class="input-group">
 		<span class="input-group-addon"><i class="fa fa-user"></i></span>
-		<input class="form-control" type="email" id="email" name="email" ng-model="email" placeholder="Email" required
-                       ng-pattern="/^[A-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
+		<input class="form-control" id="firstName" name="firstName" ng-model="firstName" placeholder="First name">
               </div>
 
-              <div class="help-block" ng-show="errors.email || editProfileForm.email.$dirty && editProfileForm.email.$invalid">
-		<p class="text-danger" ng-show="editProfileForm.email.$error.required">The user's email is required.</p>
-		<p class="text-danger" ng-show="editProfileForm.email.$error.pattern">The email seems invalid.</p>
-		<p class="text-danger" ng-repeat="error in errors.email">{{ error }}</p>
+              <div class="help-block" ng-show="errors.first_name">
+		<p class="text-danger" ng-repeat="error in errors.first_name">{{ error }}</p>
               </div>
             </div>
+
+	    
+            <div class="form-group" show-errors="{ showSuccess: true }">
+              <div class="input-group">
+		<span class="input-group-addon"><i class="fa fa-user"></i></span>
+		<input class="form-control" id="lastName" name="lastName" ng-model="lastName" placeholder="Last name">
+              </div>
+
+              <div class="help-block" ng-show="errors.last_name">
+		<p class="text-danger" ng-repeat="error in errors.last_name">{{ error }}</p>
+              </div>
+            </div>
+	    
 	    <input type="submit" ng-disabled="editProfileForm.$invalid" class="btn btn-primary btn-block" value="Edit" />
 	  </form>
 	</div>

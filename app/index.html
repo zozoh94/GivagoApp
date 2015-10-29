@@ -4,7 +4,18 @@
     <meta name="fragment" content="!" />
     <meta charset="utf-8">
     <title ng-bind="($title || 'Home') + ' - Givago - Make a free gift to the World!'">Givago - Make a free gift to the World!</title>
-    <meta name="description" content="GIVAGO aim is to enable all people the ability to donate to charity for free">
+    <meta name="description" content="{{ $description || 'GIVAGO aim is to enable all people the ability to donate to charity for free' }}">
+    <meta property="og:title" content="{{ $title || 'Home' }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ $canUrl }}" />
+    <meta property="og:description" content="{{ $description || 'GIVAGO aim is to enable all people the ability to donate to charity for free' }}" />
+    <meta property="og:image" content="images/givago-logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@GIVAGOCHARITY" />
+    <meta name="twitter:title" content="{{ $title || 'Home' }}" />
+    <meta name="twitter:description" content="{{ $description  || 'GIVAGO aim is to enable all people the ability to donate to charity for free' }}" />
+    <meta name="twitter:image" content="images/givago-logo.png" />
+    <link rel="canonical" href="{{ $canUrl }}" />
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
@@ -334,7 +345,6 @@
     <script src="bower_components/q/q.js"></script>
     <script src="bower_components/satellizer/satellizer.js"></script>
     <script src="bower_components/angular-cookie/angular-cookie.js"></script>
-    <script src="bower_components/angular-ui-router-title/angular-ui-router-title.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

@@ -159,7 +159,7 @@ angular
         templateUrl: 'views/legal.html',
 	resolve: {
 	  $title: function() { return 'Legal'; },
-	  $canUrl: function($stateParams) { return 'http://givago.co/legal'; }	
+	  $canUrl: function() { return 'http://givago.co/legal'; }	
 	}
       })
       .state('aboutus', {
@@ -167,7 +167,7 @@ angular
 	templateUrl: 'views/aboutus.html',
 	resolve: {
 	  $title: function() { return 'About Us'; },
-	  $canUrl: function($stateParams) { return 'http://givago.co/about-us'; }	
+	  $canUrl: function() { return 'http://givago.co/about-us'; }	
 	}
       });
 

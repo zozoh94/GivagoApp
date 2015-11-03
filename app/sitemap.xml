@@ -1,31 +1,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://givago.co/#!/</loc>
+    <loc>http://givago.co</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url> 
   <url>
-    <loc>http://givago.co/#!/charity/</loc>
+    <loc>http://givago.co/charity</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://givago.co/#!/sponsor/</loc>
+    <loc>http://givago.co/sponsor</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://givago.co/#!/community/</loc>
+    <loc>http://givago.co/community</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://givago.co/#!/legal/</loc>
+    <loc>http://givago.co/legal</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url> 
   <url>
-    <loc>http://givago.co/#!/give/Tree/</loc>
+    <loc>http://givago.co/give/Tree</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url> 

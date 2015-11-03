@@ -3,67 +3,115 @@
   <div class="parallax-player">
     <div class="container content-container light-bg">
       <div class="profile">
-	<h1>Profile</h1>
+	<h1>Profile</h1>	
 	<div class="col-md-6">
 	  <h2>Generals informations</h2>
 	  <p>Username: {{ currentUser.username }}</p>
 	  <p>Email: {{ currentUser.email }}</p>
 	  <p>First name: {{ currentUser.first_name }}</p>
 	  <p>Last name: {{ currentUser.last_name }}</p>
-	  <p>Age: {{ currentUser.age }}<span ng-show="!currentUser.gender">Undefined</span></p>
+	  <p>Date of birth: {{ currentUser.date_birth | date:'mediumDate'}}<span ng-show="!currentUser.gender">Undefined</span></p>
 	  <p>Gender: <span ng-show="currentUser.gender === 'M'">Male</span><span ng-show="currentUser.gender === 'F'">Female</span><span ng-show="!currentUser.gender">Undefined</span></p>
 	  <p>Income level: <span ng-show="currentUser.income_level === 1">Low</span><span ng-show="currentUser.income_level === 2">Medium</span><span ng-show="currentUser.income_level === 3">High</span><span ng-show="!currentUser.income_level">Undefined</span></p>
+	  <a class="edit-profile" ng-click="goToEditProfile()"><span class="fa fa-pencil"></span> Edit my informations</a>
+	  <h2>Interests</h2>
+	  <p><span ng-repeat="interest in currentUser.interests">{{ interest }}<span ng-show="!$last">, </span></span></p>
+	  <a class="edit-profile" ng-click="goToEditInterests()"><span class="fa fa-pencil"></span> Change my interests</a>
 	  <h2>Stats</h2>
 	  <p>Number of ads viewed: {{ currentUser.number_ads_viewed }}</p>
 	  <p>Number of different ads viewed: {{ currentUser.number_different_ads_viewed }}</p>
 	  <p>Number of app installed: {{ currentUser.number_app_installed }}</p>
 	</div>	
 	<div class="col-md-6">
-	  <img class="img-thumbnail img-responsive" ng-src="{{ currentUser.avatar }}" alt="Profile picture of {{ currentUser.username }}"></img>"
-	</div>
-	<div class="col-md-12">
-	  <a ng-click="goToEditProfile()" class="btn btn-primary">Edit my profile</a>
-	  <a ng-click="goToChangePassword()" class="btn btn-success">Change my password</a>
+	  <a class="change-avatar edit-profile" ng-click="goToChangeAvatar()"><span class="fa fa-pencil"></span></a><img class="img-thumbnail img-responsive img-avatar" ng-src="{{ currentUser.avatar }}" alt="Profile picture of {{ currentUser.username }}"></img>
+	  <p>
+	    <br/>
+	    <a ng-click="goToChangePassword()" class="btn btn-default">Change my password</a>
+	    <!--<a ng-click="goToChangePassword()" class="btn btn-default">Change my email</a>
+	    <a ng-click="goToChangePassword()" class="btn btn-danger">Delete my account</a>-->
+	  </p>
 	</div>
       </div>
-      <script type="text/ng-template" id="editProfile.html">
+      <script type="text/ng-template" id="interests.html">
 	<div class="modal-body" style="text-align: center">
+          <h2 style="text-align: center; margin-bottom:20px;">Settings</h2>
+	  <p>You can add some interests to your profile in order to get connected with the members sharing the same interest! Let's create a strong community!</p>
+	  <tags-input ng-model="interest" on-tag-adding="addTag($tag)" on-tag-removing="removeTag($tag)">
+	    <auto-complete source="loadTags($query)"></auto-complete>
+	  </tags-input>
+	</div>
+      </script>
+      <script type="text/ng-template" id="editProfile.html">
+	<div class="modal-body">
 	  <h2 style="text-align: center; margin-bottom:20px;">Edit my profile</h2>
 	  <form name="editProfileForm" ng-submit="editProfile()" action="" method="POST">
-	    <div class="form-group" show-errors="{ showSuccess: true }">
-              <div class="input-group">
-		<span class="input-group-addon"><i class="fa fa-user"></i></span>
-		<input class="form-control" name="username" ng-model="username" placeholder="Username" required autofocus>
-              </div>
+	    <div class="form-group"  >
+	      <label for="username">Username</label>
+	      <input class="form-control" name="username" ng-model="username" placeholder="Username" required autofocus>
+
               <div class="help-block" ng-show="errors.username || editProfileForm.username.$dirty && editProfileForm.displayName.$invalid">
 		<p class="text-danger" ng-show="editProfileForm.username.$error.required">The user's name is required.</p>
 		<p class="text-danger" ng-repeat="error in errors.username">{{ error }}</p>
               </div>
             </div>
 
-            <div class="form-group" show-errors="{ showSuccess: true }">
-              <div class="input-group">
-		<span class="input-group-addon"><i class="fa fa-user"></i></span>
-		<input class="form-control" id="firstName" name="firstName" ng-model="firstName" placeholder="First name">
-              </div>
+            <div class="form-group">
+	      <label for="firstName">First name</label>
+	      <input class="form-control" id="firstName" name="firstName" ng-model="firstName" placeholder="First name">
 
               <div class="help-block" ng-show="errors.first_name">
 		<p class="text-danger" ng-repeat="error in errors.first_name">{{ error }}</p>
               </div>
             </div>
-
 	    
-            <div class="form-group" show-errors="{ showSuccess: true }">
-              <div class="input-group">
-		<span class="input-group-addon"><i class="fa fa-user"></i></span>
-		<input class="form-control" id="lastName" name="lastName" ng-model="lastName" placeholder="Last name">
-              </div>
+            <div class="form-group">
+	      <label for="lastName">Last name</label>              
+	      <input class="form-control" id="lastName" name="lastName" ng-model="lastName" placeholder="Last name">
 
               <div class="help-block" ng-show="errors.last_name">
 		<p class="text-danger" ng-repeat="error in errors.last_name">{{ error }}</p>
               </div>
             </div>
+
+	    <div class="form-group">
+	      <label for="dateBirth">Date of birth</label>
+              <div class="input-group">
+		<input datepicker-popup="" type="text" class="form-control" id="dateBirth" name="dateBirth" ng-model="dateBirth" placeholder="Date of birth" is-open="opened">
+		<span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+		</span>
+              </div>
+
+              <div class="help-block" ng-show="errors.date_birth">
+		<p class="text-danger" ng-repeat="error in errors.date_birth">{{ error }}</p>
+              </div>
+            </div>
 	    
+	    <div class="form-group">
+	      <label for="gender">Gender</label>
+              <select class="form-control" name="gender" ng-model="gender">        
+		<option value="">--------</option>                
+		<option value="M" selected="">Male</option>
+		<option value="F">Female</option>       
+              </select>
+
+              <div class="help-block" ng-show="errors.gender">
+		<p class="text-danger" ng-repeat="error in errors.gender">{{ error }}</p>
+              </div>
+            </div>
+
+	    <div class="form-group">
+	      <label for="incomeLevel">Income level</label>
+              <div class="input-group">
+		<rating ng-model="incomeLevel" max="3" state-on="'glyphicon-gbp'" state-off="'glyphicon-remove'"></rating><span>    </span><span ng-show="incomeLevel === 1">Low</span><span ng-show="incomeLevel === 2">Medium</span><span ng-show="incomeLevel === 3">High</span><span ng-show="!incomeLevel">Undefined</span>
+		<input type="hidden" class="form-control" id="incomeLevel" name="incomeLevel" ng-model="incomeLevel">
+              </div>	      
+
+              <div class="help-block" ng-show="errors.income_level">
+		<p class="text-danger" ng-repeat="error in errors.income_level">{{ error }}</p>
+              </div>
+            </div>
+
 	    <input type="submit" ng-disabled="editProfileForm.$invalid" class="btn btn-primary btn-block" value="Edit" />
 	  </form>
 	</div>
@@ -108,6 +156,23 @@
               </div>
             </div>
 	    <input type="submit" ng-disabled="changePasswordForm.$invalid" class="btn btn-primary btn-block" value="Change" />
+	  </form>
+	</div>
+      </script>
+      <script type="text/ng-template" id="avatar.html">
+	<div class="modal-body">
+	  <h2 style="text-align: center; margin-bottom:20px;">Change my picture</h2>
+	  <form>
+            <p><button class="btn btn-default" ngf-select ng-model="picFile" accept="image/png|image/jpg"> Select a new picture</button></p>
+
+	    <div ng-show="pictureSelected">
+	      <div ngf-drop ng-model="picFile" ngf-pattern="image/*" class="crop-area">
+		<progressbar class="progress-striped active" value="progress" type="info"><b>{{progress}}%</b></progressbar>
+		<img-crop image="picFile | ngfDataUrl" result-image="croppedDataUrl" area-type="square" ng-init="croppedDataUrl='';pictureSelected=false;" on-load-done="pictureSelected=true"></img-crop>
+	      </div>             
+
+	      <p><br><button class="btn btn-primary" ng-click="upload(croppedDataUrl)">Submit</button></p>
+	    </div>       
 	  </form>
 	</div>
       </script>

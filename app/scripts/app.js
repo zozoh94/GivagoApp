@@ -26,7 +26,9 @@ angular
     'youtube-embed',
     'ngTagsInput',
     'toastr',
-    'ipCookie'
+    'ipCookie',
+    'ngFileUpload',
+    'ngImgCrop'
   ])
 
   .constant('apiUrl', apiUrl)
@@ -89,7 +91,7 @@ angular
         templateUrl: 'views/sponsor.html',
 	controller: 'ContactCtrl',
 	resolve: {	  
-	  $title: function() { return 'Sponsor'; },
+	  $title: function() { return 'Sponsors'; },
 	  $description: function() { return 'Givago is made for you! Contact us for more information. Together, let’s make a difference. We just need to start from somewhere.'; },
 	  $canUrl: function() { return 'http://givago.co/sponsor'; }
 	}
@@ -99,7 +101,7 @@ angular
         templateUrl: 'views/charity.html',
 	controller: 'ContactCtrl',
 	resolve: {
-	  $title: function() { return 'Charity'; },
+	  $title: function() { return 'Charities'; },
 	  $description: function() { return 'Givago wants to support charities! Please contact us if you have some projects, and together with the community we will try our best to help you.'; },
 	  $canUrl: function() { return 'http://givago.co/charity'; }	  
 	}
@@ -109,7 +111,7 @@ angular
         templateUrl: 'views/community.html',
 	controller: 'ContactCtrl',
 	resolve: {
-	  $title: function() { return 'Community'; },
+	  $title: function() { return 'Communities'; },
 	  $description: function() { return 'Givago wants to support the community. So please contact us if you have any project, and together with the community we will try our best to turn it into a reality!'; },
 	  $canUrl: function() { return 'http://givago.co/community'; }
 	}
@@ -119,7 +121,7 @@ angular
         templateUrl: 'views/player.mosaic.html',
         controller: 'MosaicCtrl',
 	resolve: {
-	  $title: function() { return 'Ads'; },
+	  $title: function() { return 'Give'; },
 	  $canUrl: function($stateParams) { return 'http://givago.co/give/'+$stateParams.gift; }	
 	}
       })

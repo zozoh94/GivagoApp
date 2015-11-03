@@ -13,7 +13,7 @@ body {
   background: url("../images/skulls.png");
 }
 
-.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+.nav, .pagination, .carousel, .panel-title a, .user-logo, .edit-profile { cursor: pointer; }
 
 .wrapper {
   min-height: 360px;
@@ -859,4 +859,26 @@ div.navbar-collapse.collapse.in {
 
 .app-link {
   cursor: pointer;
+}
+
+.change-avatar {
+  position: absolute;
+  top: 5px;
+  font-size: 2em;
+  background: rgba(255, 255, 255, .4);
+  color: #333;
+  left: 20px;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+.crop-area {
+  background: #E4E4E4;
+  overflow: hidden;
+  width:autopx;
+  height:500px;
+}
+
+.img-avatar {
+  width: 100%;
 }

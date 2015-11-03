@@ -51,8 +51,14 @@ angular.module('givagoApp')
       profile: function() {
         return $http.get(apiUrl+'/auth/user/');
       },
-      editProfile: function(username, firstName, lastName, age, gender, incomeLevel) {
-	return $http.put(apiUrl+'/auth/user/', {'username' : username, 'first_name' : firstName, 'last_name' : lastName,  'age' : age, 'gender' : gender, 'income_level' : incomeLevel});
+      editProfile: function(username, firstName, lastName, dateBirth, gender, incomeLevel) {
+	var dateBirthFinal;
+	if(dateBirth instanceof Date) {
+	    dateBirthFinal = dateBirth.toISOString().slice(0,10);
+	} else {
+	    dateBirthFinal = dateBirth;
+	}
+	return $http.put(apiUrl+'/auth/user/', {'username' : username, 'first_name' : firstName, 'last_name' : lastName,  'date_birth' : dateBirthFinal, 'gender' : gender, 'income_level' : incomeLevel});
       },
       contactCharity: function(firstName, lastName, email, phone, charityName, position, comment) {
 	return $http.post(apiUrl+'/contact/charity/', {'first_name': firstName, 'last_name': lastName, 'email': email, 'phone': phone, 'charity_name': charityName, 'position': position, 'comment': comment });

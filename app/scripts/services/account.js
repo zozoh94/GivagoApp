@@ -24,15 +24,6 @@ angular.module('givagoApp')
           size: 'sm',
 	  backdrop: backdrop
         });
-
-	/*        $scope.$watch(
-          $auth.isAuthenticated,
-          function(newVal){
-            if(newVal === true){
-              modalInstance.close();
-	    }
-          }
-        );*/
       }
     };
   });

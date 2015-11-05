@@ -2,17 +2,16 @@
   <h1 class="title mini" ui-sref="home"><img src="/images/givago-logo.png" alt="Givago" /></h1>
   <div class="player parallax-player">
     <div class="container content-container light-bg app-container" ng-show="isSmartphone()">
-      <div class="tour third-step app" ng-show="currentStep === 2">
+      <div class="tour third-step app" ng-show="currentStep === 2 && pageLoaded">
 	<p><span class="label label-primary">3</span> Download and test an application.</p>
-	<a class="btn btn-danger pull-right" ng-click="closeFeatureTour()">I don't want the feature tour</a>
+	<a class="btn btn-danger pull-right" ng-click="closeFeatureTour()"><span class="fa fa-check"></span> I got it!</a>
       </div>
-      <a class="btn btn-primary btn-block" target="_blank" href="{{ apiUrl }}/app/{{ app.id }}/click/{{ uiRouterState.params.gift }}/{{ currentUser.username }}/" class="app-link">Click here to test {{ app.name }}.</a>
-      <p>To validate your gift please fully install the application</p>
+      <a class="btn btn-primary btn-block" target="_blank" href="{{ apiUrl }}/app/{{ app.id }}/click/{{ uiRouterState.params.gift }}/{{ currentUser.username }}/" class="app-link">Please install and launch :<br/>{{app.name}}<br/>on your device to validate your donation.</a>
     </div>
     <div class="container col-md-8 col-md-offset-2" ng-hide="isSmartphone() && startMode === true">
-      <div class="tour third-step" ng-show="currentStep === 2">
+      <div class="tour third-step" ng-show="currentStep === 2 && pageLoaded">
 	<p><span class="label label-primary">3</span> <span ng-hide="startMode">Or </span>Watch a short video<span ng-hide="startMode"> (Max 1 minute)</span>.</p>
-	<a class="btn btn-danger pull-right" ng-click="closeFeatureTour()">I don't want the feature tour</a>
+	<a class="btn btn-danger pull-right" ng-click="closeFeatureTour()"><span class="fa fa-check"></span> I got it!</a>
       </div>
       <div ng-show="adsBlocked" class="alert alert-danger"><p>Please disable ads blocker</p></div>
       <div id="dailymotion-ads" ng-show="startMode"><div class="dailymotion-widget" data-placement="560c7267ad02140014ed2af2"></div></div>    

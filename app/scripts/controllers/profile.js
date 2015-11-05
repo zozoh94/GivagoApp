@@ -137,7 +137,7 @@ angular.module('givagoApp').controller('AvatarModalCtrl', function ($rootScope, 
 	$modalInstance.close();
 	toastr.success('You have updated your picture.');
       });
-    }, function (response) {
+    }, function () {
       toastr.error('Error.');
     }, function (evt) {
       $scope.progress = parseInt(100.0 * evt.loaded / evt.total);

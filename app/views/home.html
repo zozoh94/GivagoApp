@@ -10,9 +10,9 @@
   </div>  
   <div class="player parallax-player">    
     <div class="player-selection">
-      <div class="tour second-step" ng-show="currentStep === 1">
+      <div class="tour second-step" ng-show="currentStep === 1 && pageLoaded">
 	<p><span class="label label-primary">2</span> Select your donation.</p>
-	<a class="btn btn-danger pull-right" ng-click="closeFeatureTour()">I don't want the feature tour</a>
+	<a class="btn btn-danger pull-right" ng-click="closeFeatureTour()"><span class="fa fa-check"></span> I got it!</a>
       </div>
       <span class="fa-stack fa-5x" ng-repeat="gift in gifts" ui-sref="mosaic({gift: gift.name})">
 	<i class="fa fa-circle fa-stack-2x"></i>

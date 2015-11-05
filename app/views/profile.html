@@ -8,11 +8,11 @@
 	  <h2>Generals informations</h2>
 	  <p>Username: {{ currentUser.username }}</p>
 	  <p>Email: {{ currentUser.email }}</p>
-	  <p>First name: {{ currentUser.first_name }}</p>
-	  <p>Last name: {{ currentUser.last_name }}</p>
-	  <p>Date of birth: {{ currentUser.date_birth | date:'mediumDate'}}<span ng-show="!currentUser.gender">Undefined</span></p>
-	  <p>Gender: <span ng-show="currentUser.gender === 'M'">Male</span><span ng-show="currentUser.gender === 'F'">Female</span><span ng-show="!currentUser.gender">Undefined</span></p>
-	  <p>Income level: <span ng-show="currentUser.income_level === 1">Low</span><span ng-show="currentUser.income_level === 2">Medium</span><span ng-show="currentUser.income_level === 3">High</span><span ng-show="!currentUser.income_level">Undefined</span></p>
+	  <p>First name: {{ currentUser.first_name }}<span ng-show="!currentUser.first_name">Not set</span></p>
+	  <p>Last name: {{ currentUser.last_name }}<span ng-show="!currentUser.last_name">Not set</span></p>
+	  <p>Date of birth: {{ currentUser.date_birth | date:'mediumDate'}}<span ng-show="!currentUser.gender">Not set</span></p>
+	  <p>Gender: <span ng-show="currentUser.gender === 'M'">Male</span><span ng-show="currentUser.gender === 'F'">Female</span><span ng-show="!currentUser.gender">Not set</span></p>
+	  <p>Income level: <span ng-show="currentUser.income_level === 1">Low</span><span ng-show="currentUser.income_level === 2">Medium</span><span ng-show="currentUser.income_level === 3">High</span><span ng-show="!currentUser.income_level">Not set</span></p>
 	  <a class="edit-profile" ng-click="goToEditProfile()"><span class="fa fa-pencil"></span> Edit my informations</a>
 	  <h2>Interests</h2>
 	  <p><span ng-repeat="interest in currentUser.interests">{{ interest }}<span ng-show="!$last">, </span></span></p>
@@ -23,7 +23,7 @@
 	  <p>Number of app installed: {{ currentUser.number_app_installed }}</p>
 	</div>	
 	<div class="col-md-6">
-	  <a class="change-avatar edit-profile" ng-click="goToChangeAvatar()"><span class="fa fa-pencil"></span></a><img class="img-thumbnail img-responsive img-avatar" ng-src="{{ currentUser.avatar }}" alt="Profile picture of {{ currentUser.username }}"></img>
+	  <a class="change-avatar edit-profile" ng-click="goToChangeAvatar()"><span class="fa fa-pencil"></span></a><img ng-show="!currentUser.avatar" class="img-thumbnail img-responsive img-avatar" src="images/avatar-default.png" alt="Default profile picture"><img ng-show="currentUser.avatar" class="img-thumbnail img-responsive img-avatar" ng-src="{{ currentUser.avatar }}" alt="Profile picture of {{ currentUser.username }}"></img>
 	  <p>
 	    <br/>
 	    <a ng-click="goToChangePassword()" class="btn btn-default">Change my password</a>
@@ -103,7 +103,7 @@
 	    <div class="form-group">
 	      <label for="incomeLevel">Income level</label>
               <div class="input-group">
-		<rating ng-model="incomeLevel" max="3" state-on="'glyphicon-gbp'" state-off="'glyphicon-remove'"></rating><span>    </span><span ng-show="incomeLevel === 1">Low</span><span ng-show="incomeLevel === 2">Medium</span><span ng-show="incomeLevel === 3">High</span><span ng-show="!incomeLevel">Undefined</span>
+		<rating ng-model="incomeLevel" max="3" state-on="'glyphicon-gbp'" state-off="'glyphicon-remove'"></rating><span>    </span><span ng-show="incomeLevel === 1">Low</span><span ng-show="incomeLevel === 2">Medium</span><span ng-show="incomeLevel === 3">High</span><span ng-show="!incomeLevel">Not set</span>
 		<input type="hidden" class="form-control" id="incomeLevel" name="incomeLevel" ng-model="incomeLevel">
               </div>	      
 

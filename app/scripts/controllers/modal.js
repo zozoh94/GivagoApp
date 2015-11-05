@@ -18,7 +18,7 @@ angular.module('givagoApp').controller('ModalCtrl', function ($rootScope, $scope
 	$modalInstance.close();
       })
       .catch(function() {
-        toastr.error('You have already been connected with another social media or you\'ve already an account on Givago. Please use the correct way to log in');
+        toastr.error('An error occured, please retry.');
 	
 	$auth.logout()
 	  .then(function() {

@@ -58,10 +58,10 @@
       <div class="container">
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="navbar-header">
-	  <div class="first-step tour" ng-show="isXs() && currentStep === 0 && navCollapsed">
+	  <div class="first-step tour" ng-show="isXs() && currentStep === 0 && navCollapsed && pageLoaded">
 	    <p><b>Welcome on Givago! If you want to be a change maker, you are at the perfect place!</b></p>
 	    <p><span class="label label-primary">1</span> Connect with us via Facebook, Google, or create an account!</p>
-	    <a class="btn btn-danger pull-right" ng-click="closeFeatureTour()">I don't want the feature tour</a>
+	    <a class="btn btn-danger pull-right" ng-click="closeFeatureTour()"><a class="btn btn-danger pull-right" ng-click="closeFeatureTour()"><span class="fa fa-check"></span> I got it!</a>
 	  </div>
 	  <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
             <span class="sr-only">Toggle navigation</span>
@@ -96,12 +96,13 @@
       <div class="container">
         <div class="top-right" dropdown is-open="status.isopen">
           <div class="hello-user">
-            <span>{{currentUser.username}}</span>
+            <span ng-show="isAuthenticated()">{{currentUser.username}}</span>
+	    <span class="login" ng-show="!isAuthenticated()" data-ng-click="openLoginModal()">Log In</span>
           </div>
-	  <div class="first-step tour" ng-show="currentStep === 0">
+	  <div class="first-step tour" ng-show="currentStep === 0 && pageLoaded">
 	    <p><b>Welcome on Givago! If you want to be a change maker, you are at the perfect place!</b></p>
 	    <p><span class="label label-primary">1</span> Connect with us via Facebook, Google, or create an account!</p>
-	    <a class="btn btn-danger pull-right" ng-click="closeFeatureTour()">I don't want the feature tour</a>
+	    <a class="btn btn-danger pull-right" ng-click="closeFeatureTour()"><span class="fa fa-check"></span> I got it!</a>
 	  </div>
           <span class="fa-stack fa-2x user-logo dropdown-toggle" dropdown-toggle data-ng-click="openLoginModal()">
             <span ng-show="!currentUser.avatar">
@@ -168,7 +169,7 @@
           </div>
 	  <input type="submit" ng-disabled="resetForm.$invalid" class="btn btn-primary btn-block" value="Reset" />
 	</form>
-	<a href="/">Back to the homepage</a>
+	<a ui-sref="home">Back to the homepage</a>
       </div>
     </script>
 

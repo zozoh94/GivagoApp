@@ -199,7 +199,7 @@ angular
       }
     });
   })
-  .run(function($rootScope, ipCookie) {
+  .run(function($rootScope, ipCookie, $timeout) {
     if(ipCookie('featureTour')) {
       $rootScope.currentStep = -1;
     }
@@ -212,6 +212,13 @@ angular
       $rootScope.currentStep = -1;
       ipCookie('featureTour', true, { expires: 3000 });
     };
+
+    $rootScope.pageLoaded = false;
+    $rootScope.$on('$viewContentLoaded', function(){
+      $timeout(function() {
+	$rootScope.pageLoaded = true;
+      }, 1000);
+    });
   })
   .run(['$rootScope', '$timeout', '$state', function($rootScope, $timeout, $state) {
 

@@ -25,7 +25,7 @@ angular.module('givagoApp')
 	return $http.get(apiUrl+'/gift/');
       },
       verifyEmail: function(key) {
-	return $http.post(apiUrl+'/auth/registration/verify-email/', { key : key});
+	return $http.post(apiUrl+'/auth/registration/verify-email/login/', { key : key});
       },
       reset: function(email) {
 	return $http.post(apiUrl+'/auth/password/reset/', { email : email});

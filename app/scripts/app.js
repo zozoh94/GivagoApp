@@ -1,6 +1,6 @@
 'use strict';
 
-var apiUrl = 'http://api.localhost:8000';
+var apiUrl = 'http://api.givago.co';
 
 /**
  * @ngdoc overview

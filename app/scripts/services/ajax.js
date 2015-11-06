@@ -15,7 +15,7 @@ angular.module('givagoApp')
       adDailymotionSee: function(give) {
 	return $http.post(apiUrl+'/ad/see/dailymotion/', { 'give' : give });
       },
-      app: function(os) {
+      apps: function(os) {
 	return $http.get(apiUrl+'/app/?os='+os);
       },
       appClick: function(id, give) {

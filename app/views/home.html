@@ -1,7 +1,7 @@
 <div class="container home">
   <ul class="social-logo">
       <li><a target="_blank" href="https://www.facebook.com/givagocharity" class="facebook"><span class="fa fa-facebook-square"></span></a></li>
-      <li><a target="_blank" href="https://plus.google.com/communities/111636364612558887812" class="google"><span class="fa fa-google-plus-square"></span></a></li>
+      <li><a target="_blank" href="https://plus.google.com/+Givagocharity" class="google"><span class="fa fa-google-plus-square"></span></a></li>
       <li><a target="_blank" href="https://twitter.com/GIVAGOCHARITY" class="twitter"><span class="fa fa-twitter-square"></span></a></li>
     </ul>
   <h1 class="title" ui-sref="home"><img src="/images/givago-logo.png" alt="Givago" /></h1>
@@ -17,7 +17,6 @@
       <span class="fa-stack fa-5x" ng-repeat="gift in gifts" ui-sref="mosaic({gift: gift.name})">
 	<i class="fa fa-circle fa-stack-2x"></i>
 	<i class="{{ gift.icon }} fa-stack-1x"></i>
-	<span class="player-label shadow1">{{ gift.name }}</span>
 	<i class="fa fa-circle fa-stack-1x number-gift-circle"></i>
 	<span class="number-gift">{{ gift.number_gifts }}</span>
       </span>

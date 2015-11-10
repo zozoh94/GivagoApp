@@ -676,14 +676,26 @@ a.btn-connect-option {
 }
 
 .first-step {
-  width: 255px;
+  width: 339px;
   top: -19px;
   right: 157px;
+}
+
+@media (max-width: 767px) {
+  .first-step {
+    right: 100px;
+  }
 }
 
 @media (max-width: 480px) {
   .first-step {
     width: 266px;
+  }
+}
+
+@media (max-width: 375px) {
+  .first-step {
+    width: 200px;
   }
 }
 
@@ -761,7 +773,7 @@ a.btn-connect-option {
   position: absolute;
   width: 100%;
   left: 50px;
-  bottom: -47px;
+  bottom: -50px;
   font-size: 0.3em;
 }
 

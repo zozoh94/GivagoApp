@@ -23,7 +23,7 @@ angular.module('givagoApp')
           controller: 'ModalCtrl',
           size: 'sm',
 	  backdrop: backdrop
-        });
+        });	
       }
     };
   });

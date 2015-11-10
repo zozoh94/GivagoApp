@@ -18,6 +18,7 @@
     <meta name="twitter:image" content="http://static.givago.co/givago-logo.png" />
     <link rel="canonical" href="{{ $canUrl }}" />
     <meta name="viewport" content="width=device-width">
+    <link rel="publisher" href="https://plus.google.com/+Givagocharity" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -58,10 +59,12 @@
       <div class="container">
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="navbar-header">
-	  <div class="first-step tour" ng-show="isXs() && currentStep === 0 && navCollapsed && pageLoaded">
+	  <div class="visible-xs">
+	  <div class="first-step tour" ng-show="currentStep === 0 && navCollapsed && pageLoaded">
 	    <p><b>Welcome on Givago! If you want to be a change maker, you are at the perfect place!</b></p>
 	    <p><span class="label label-primary">1</span> Connect with us via Facebook, Google, or create an account!</p>
-	    <a class="btn btn-danger pull-right" ng-click="closeFeatureTour()"><a class="btn btn-danger pull-right" ng-click="closeFeatureTour()"><span class="fa fa-check"></span> I got it!</a>
+	    <a class="btn btn-danger pull-right" ng-click="closeFeatureTour()"><span class="fa fa-check"></span> I got it!</a>
+	  </div>
 	  </div>
 	  <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
             <span class="sr-only">Toggle navigation</span>
@@ -130,7 +133,7 @@
 	<p style="margin-left: 40px;">Follow us:</p>
 	<ul class="social-logo">
 	  <li><a target="_blank" href="https://www.facebook.com/givagocharity" class="facebook"><span class="fa fa-facebook-square"></span></a></li>
-	  <li><a target="_blank" href="https://plus.google.com/communities/111636364612558887812" class="google"><span class="fa fa-google-plus-square"></span></a></li>
+	  <li><a target="_blank" href="https://plus.google.com/+Givagocharity" class="google"><span class="fa fa-google-plus-square"></span></a></li>
 	  <li><a target="_blank" href="https://twitter.com/GIVAGOCHARITY" class="twitter"><span class="fa fa-twitter-square"></span></a></li>
 	</ul>
 	<ul>

@@ -47,11 +47,5 @@ angular.module('givagoApp')
 	  $state.go('home');
         });
     };
-
-    $scope.isXs = function() {
-      /* jshint ignore:start */
-      return ($(window).width() < 768);
-      /* jshint ignore:end */
-    };
   });
 

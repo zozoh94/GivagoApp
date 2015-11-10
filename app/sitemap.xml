@@ -5,17 +5,17 @@
     <priority>1.0</priority>
   </url> 
   <url>
-    <loc>http://givago.co/charity</loc>
+    <loc>http://givago.co/charities</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://givago.co/sponsor</loc>
+    <loc>http://givago.co/sponsors</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://givago.co/community</loc>
+    <loc>http://givago.co/communities</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>

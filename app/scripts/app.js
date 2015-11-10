@@ -1,6 +1,6 @@
 'use strict';
 
-var apiUrl = 'http://api.givago.co';
+var apiUrl = 'https://api.givago.co';
 
 /**
  * @ngdoc overview
@@ -87,7 +87,7 @@ angular
 	}
       })
       .state('sponsor', {
-        url: '/sponsor',
+        url: '/sponsors',
         templateUrl: 'views/sponsor.html',
 	controller: 'ContactCtrl',
 	resolve: {	  
@@ -97,7 +97,7 @@ angular
 	}
       })
       .state('charity', {
-        url: '/charity',
+        url: '/charities',
         templateUrl: 'views/charity.html',
 	controller: 'ContactCtrl',
 	resolve: {
@@ -107,7 +107,7 @@ angular
 	}
       })
       .state('community', {
-        url: '/community',
+        url: '/communities',
         templateUrl: 'views/community.html',
 	controller: 'ContactCtrl',
 	resolve: {

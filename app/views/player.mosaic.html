@@ -6,7 +6,8 @@
 	<p><span class="label label-primary">3</span> Download and test an application.</p>
 	<a class="btn btn-danger pull-right" ng-click="closeFeatureTour()"><span class="fa fa-check"></span> I got it!</a>
       </div>
-      <div ng-repeat="app in apps" class="col-md-6"><a class="btn btn-primary btn-block container" target="_blank" href="{{ apiUrl }}/app/{{ app.id }}/click/{{ uiRouterState.params.gift }}/{{ currentUser.username }}/" class="app-link"><div class="col-sm-3"><img ng-src="{{ app.thumbnail }}" style="max-width: 100%; height: 75px;" alt="Thumbnail of {{ app.name }}"/></div><div class="col-sm-9" style="font-size: 17px">Please install and launch :<br/>{{app.name}}<br/>on your device to validate your donation.</div></a></div>
+      <h2>Please install and launch one of the following app on your device to validate your donation :</h2>
+      <div ng-repeat="app in apps | limitTo:4" class="col-md-6"><a style="margin-bottom: 30px;" class="btn btn-primary btn-block container" target="_blank" href="{{ apiUrl }}/app/{{ app.id }}/click/{{ uiRouterState.params.gift }}/{{ currentUser.username }}/" class="app-link"><div class="col-sm-3"><img ng-src="{{ app.thumbnail }}" style="max-width: 100%; height: 75px;" alt="Thumbnail of {{ app.name }}"/></div><div class="col-sm-9" style="font-size: 17px; padding-top: 25px;">{{app.name}}</div></a></div>
     </div>
     <div class="container col-md-8 col-md-offset-2" ng-hide="isSmartphone() && startMode === true && forceAds === false">
       <div class="tour third-step" ng-show="currentStep === 2 && pageLoaded">

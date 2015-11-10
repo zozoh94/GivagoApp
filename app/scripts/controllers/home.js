@@ -17,10 +17,9 @@ angular.module('givagoApp').controller('HomeCtrl', function ($rootScope, $scope,
     $document.scrollTo(contentContainer, 0, 800);
   };
 
-  $scope.$watch(
-    $auth.isAuthenticated, function(newVal){
-      if(newVal === true && $rootScope.currentStep === 0){
-	$rootScope.currentStep = 1;	
-      }
-    });
+  $scope.$watch($auth.isAuthenticated, function(newVal){
+    if(newVal === true && $rootScope.currentStep === 0){
+      $rootScope.currentStep = 1;
+    }
+  });
 });

@@ -17,7 +17,7 @@ angular.module('givagoApp').controller('MosaicCtrl', function ($rootScope, $scop
       if(angular.element(document.getElementById('dailymotion-ads'))[0].offsetHeight === 0) {
 	$scope.adsBlocked = true;
       }
-    }, 2000);
+    }, 5000);
   });
 
   $scope.apiUrl = apiUrl;
@@ -82,9 +82,19 @@ angular.module('givagoApp').controller('MosaicCtrl', function ($rootScope, $scop
   
   $scope.uiRouterState = $state;
 
-  $scope.$on('account::authenticated', function() {
-    loadAds();
-    toastr.info('Now you can select a video you\'d like to watch!');
+  $scope.$watch($auth.isAuthenticated, function(newVal){
+    if(newVal === true) {
+      loadAds();
+      if($scope.isSmartphone()) {    
+	loadApps();
+	toastr.info('Now you can download an app!');
+      } else {
+	toastr.info('Now you can select a video you\'d like to watch!');
+      }
+      if($rootScope.currentStep === 0) {
+	$rootScope.currentStep = 2;
+      }
+    }
   });
 
   $scope.clickOnMosaic = function(){

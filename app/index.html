@@ -25,12 +25,12 @@
     <link rel="stylesheet" href="bower_components/angular-motion/dist/angular-motion.css" />
     <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="bower_components/bootstrap-social/bootstrap-social.css" />
-    <link rel="stylesheet" href="bower_components/bootstrap-sweetalert/lib/sweet-alert.css" />
     <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-social/bootstrap-social.css" />
     <link rel="stylesheet" href="bower_components/magic/magic.min.css" />
     <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css" />
     <link rel="stylesheet" href="bower_components/ng-img-crop/compile/minified/ng-img-crop.css" />
+    <link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -144,6 +144,22 @@
 	</ul>
       </div>
     </div>
+
+    <script type="text/ng-template" id="share.html">
+      <div class="modal-body" style="text-align: center">
+	<a class="btn btn-facebook btn-block btn-social btn-large" ng-click="isCollapseShareFb = !isCollapseShareFb"><span class="fa fa-facebook-square"></span> Share it on facebook!</a>
+	<div collapse="isCollapseShareFb" class="jumbotron share-fb">
+	  <form name="shareFbForm" ng-submit="shareOnFacebook()">
+	  <div class="form-group">            
+            <textarea class="form-control" id="post" name="post" ng-model="message" placeholder="Message"></textarea>       
+	  </div>
+	  <p><button type="submit" class="btn btn-success pull-right">Post</button><br/><br/></p>	 
+	  </form>
+	</div>
+	<a class="btn btn-twitter btn-block btn-social btn-large" href="https://twitter.com/intent/tweet?text=Thanks%20to%20@GIVAGOCHARITY%20I've%20just%20planted%20a%20tree%20for%20free!%20Plant%20your%20own%20on%20http://givago.co"><span class="fa fa-twitter-square"></span> Tweet it!</a>
+	<br/><a class="btn btn-warning pull-right" ng-click="ignore()">Ignore</a><br/>
+      </div>
+    </script>
     
     <script type="text/ng-template" id="reset.html">
       <div class="modal-body" style="text-align: center">
@@ -221,7 +237,7 @@
 	  <div class="form-group" show-errors="{ showSuccess: true }">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-user"></i></span>
-              <input class="form-control" type="email" id="email" name="email" ng-model="email" placeholder="Email" required ng-pattern="/^[A-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
+              <input class="form-control" type="email" id="email" name="email" ng-model="email" placeholder="Email" required ng-pattern="/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/">
             </div>
 
             <div class="help-block" ng-show="resetForm.email.$dirty && resetForm.email.$invalid">
@@ -252,7 +268,7 @@
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-user"></i></span>
               <input class="form-control" type="email" id="email" name="email" ng-model="email" placeholder="Email" required
-                     ng-pattern="/^[A-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
+                     ng-pattern="/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/">
             </div>
 
             <div class="help-block" ng-show="errors.email || signupForm.email.$dirty && signupForm.email.$invalid">
@@ -305,6 +321,24 @@
       ga('send', 'pageview');
 
     </script>
+
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '427235487450804',
+          xfbml      : true,
+          version    : 'v2.5'
+        });
+      };
+
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
     
     <!-- build:js(.) scripts/oldieshim.js -->
     <!--[if lt IE 9]>
@@ -346,7 +380,6 @@
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js"></script>
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
-    <script src="bower_components/bootstrap-sweetalert/lib/sweet-alert.js"></script>
     <script src="bower_components/ng-tags-input/ng-tags-input.min.js"></script>
     <script src="bower_components/ngstorage/ngStorage.js"></script>
     <script src="bower_components/parallax/deploy/parallax.js"></script>
@@ -360,6 +393,8 @@
     <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
     <script src="bower_components/ng-file-upload-shim/ng-file-upload-shim.js"></script>
     <script src="bower_components/ng-img-crop/compile/minified/ng-img-crop.js"></script>
+    <script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="bower_components/ngSweetAlert/SweetAlert.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

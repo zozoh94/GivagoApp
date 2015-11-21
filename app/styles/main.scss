@@ -498,28 +498,6 @@ growl-notification{
   margin-bottom: 20px;
 }
 
-a.btn-connect-option.facebook {
-  background: url("../images/btn-connect-option.png") no-repeat scroll 0% 0% #3B5998;
-  margin-right: 20px;
-}
-a.btn-connect-option.google-plus {
-  background: url("../images/btn-connect-option.png") no-repeat scroll 0px -60px #DC4D28;
-}
-a.btn-connect-option {
-  display: block;
-  font-size: 20px;
-  font-weight: bold;
-  background-color: #2D72D9;
-  color: #FFF;
-  width: 145px;
-  height: 30px;
-  line-height: 28px;
-  text-align: center;
-  padding: 15px 15px 15px 60px;
-  border-radius: 3px;
-  float: left;
-}
-
 .modal-dialog {
   font-size: 1em;
   font-family: Arial, Helvetica, sans-serif;
@@ -911,4 +889,8 @@ div.navbar-collapse.collapse.in {
 
 .img-avatar {
   width: 100%;
+}
+
+.share-fb {
+  margin-top: 30px;
 }

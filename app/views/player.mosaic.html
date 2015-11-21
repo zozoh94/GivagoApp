@@ -9,14 +9,12 @@
       <h2>Please install and launch one of the following app on your device to validate your donation :</h2>
       <div ng-repeat="app in apps | limitTo:4" class="col-md-6"><a style="margin-bottom: 30px;" class="btn btn-primary btn-block container" target="_blank" href="{{ apiUrl }}/app/{{ app.id }}/click/{{ uiRouterState.params.gift }}/{{ currentUser.username }}/" class="app-link"><div class="col-sm-3"><img ng-src="{{ app.thumbnail }}" style="max-width: 100%; height: 75px;" alt="Thumbnail of {{ app.name }}"/></div><div class="col-sm-9" style="font-size: 17px; padding-top: 25px;">{{app.name}}</div></a></div>
     </div>
-    <div class="container col-md-8 col-md-offset-2" ng-hide="isSmartphone() && startMode === true && forceAds === false">
+    <div class="container col-md-8 col-md-offset-2" ng-hide="isSmartphone() && forceAds === false">
       <div class="tour third-step" ng-show="currentStep === 2 && pageLoaded">
-	<p><span class="label label-primary">3</span> <span ng-hide="startMode">Or </span>Watch a short video<span ng-hide="startMode"> (Max 1 minute)</span>.</p>
+	<p><span class="label label-primary">3</span> Watch a short video<span ng-hide="startMode"> (Max 1 minute)</span>.</p>
 	<a class="btn btn-danger pull-right" ng-click="closeFeatureTour()"><span class="fa fa-check"></span> I got it!</a>
-      </div>
-      <div ng-show="adsBlocked" class="alert alert-danger"><p>Please disable ads blocker</p></div>
-      <div id="dailymotion-ads" ng-show="startMode"><div class="dailymotion-widget" data-placement="560c7267ad02140014ed2af2"></div></div>    
-      <ul class="list-unstyled video-list-thumbs row" ng-hide="startMode">
+      </div>            
+      <ul class="list-unstyled video-list-thumbs row">
         <li ng-repeat="ad in ads" class="col-md-6">
           <a title="{{ ad.name }}" ui-sref="player({ gift: uiRouterState.params.gift, ad : ad.id })">
             <img class="video-preview img-responsive" ng-src="{{ ad.video.thumbnail }}" />
@@ -36,5 +34,3 @@
     -->
   </div>
 </div>
-
-<script>(function(w,d,s,u,n,e,c){w.PXLObject = n; w[n] = w[n] || function(){(w[n].q = w[n].q || []).push(arguments);};w[n].l = 1 * new Date();e = d.createElement(s); e.async = 1; e.src = u;c = d.getElementsByTagName(s)[0]; c.parentNode.insertBefore(e,c);})(window, document, "script", "//api.dmcdn.net/pxl/client.js", "pxl");</script>

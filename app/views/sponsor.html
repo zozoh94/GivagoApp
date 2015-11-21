@@ -17,6 +17,32 @@
       <h2>Contact Us</h2>
       <form name="contactForm" method="POST" ng-submit="contactSponsor()">
 	<div class="col-md-6">
+	  <div class="form-group" show-errors="{ showSuccess: true }">	  
+	    <label class="sr-only" for="companyName">Company name</label>
+	    <div class="input-group">
+	      <span class="input-group-addon fa fa-building"></span>
+	      <input class="form-control" id="companyName" name="companyName" ng-model="companyName" placeholder="Company name" required>
+	    </div>
+	    <div class="help-block" ng-show="errors.company_name || contactForm.companyName.$dirty && contactForm.companyName.$invalid">
+              <p class="text-danger" ng-show="contactForm.companyName.$error.required">Company name is required.</p>
+	      <p class="text-danger" ng-repeat="error in errors.company_name">{{ error }}</p>
+	    </div>
+	  </div>
+	</div>
+	<div class="col-md-6">
+	  <div class="form-group" show-errors="{ showSuccess: true }">
+	    <label class="sr-only" for="position">Position in the company</label>
+	    <div class="input-group">
+	      <span class="input-group-addon fa fa-briefcase"></span>
+	      <input class="form-control" id="position" name="position" ng-model="position" placeholder="Position in the company" required>
+	    </div>
+	    <div class="help-block" ng-show="errors.position || contactForm.position.$dirty && contactForm.position.$invalid">
+              <p class="text-danger" ng-show="contactForm.position.$error.required">Position is required.</p>
+	      <p class="text-danger" ng-repeat="error in errors.position">{{ error }}</p>	    
+	    </div>
+	  </div>	
+	</div>
+	<div class="col-md-6">
 	  <div class="form-group" show-errors="{ showSuccess: true }">
 	    <label class="sr-only" for="firstName">First name</label>
 	    <div class="input-group">
@@ -71,32 +97,6 @@
 	  </div>
 	</div>
 	<div class="col-md-6">
-	  <div class="form-group" show-errors="{ showSuccess: true }">	  
-	    <label class="sr-only" for="companyName">Company name</label>
-	    <div class="input-group">
-	      <span class="input-group-addon fa fa-building"></span>
-	      <input class="form-control" id="companyName" name="companyName" ng-model="companyName" placeholder="Company name" required>
-	    </div>
-	    <div class="help-block" ng-show="errors.company_name || contactForm.companyName.$dirty && contactForm.companyName.$invalid">
-              <p class="text-danger" ng-show="contactForm.companyName.$error.required">Company name is required.</p>
-	      <p class="text-danger" ng-repeat="error in errors.company_name">{{ error }}</p>
-	    </div>
-	  </div>
-	</div>
-	<div class="col-md-6">
-	  <div class="form-group" show-errors="{ showSuccess: true }">
-	    <label class="sr-only" for="position">Position in the company</label>
-	    <div class="input-group">
-	      <span class="input-group-addon fa fa-briefcase"></span>
-	      <input class="form-control" id="position" name="position" ng-model="position" placeholder="Position in the company" required>
-	    </div>
-	    <div class="help-block" ng-show="errors.position || contactForm.position.$dirty && contactForm.position.$invalid">
-              <p class="text-danger" ng-show="contactForm.position.$error.required">Position is required.</p>
-	      <p class="text-danger" ng-repeat="error in errors.position">{{ error }}</p>	    
-	    </div>
-	  </div>	
-	</div>
-	<div class="col-md-6">
 	  <div class="form-group" show-errors="{ showSuccess: true }">
 	    <label class="sr-only" for="budget">Budget</label>
 	    <div class="input-group">
@@ -112,8 +112,8 @@
 	</div>
 	<div class="col-md-12">
 	  <div class="form-group" show-errors="{ showSuccess: true }">
-	    <label class="sr-only" for="comment">Comment</label>
-	    <textarea class="form-control" id="comment" name="comment" ng-model="comment" placeholder="Leave a comment"></textarea>
+	    <label class="sr-only" for="comment">Tell us more</label>
+	    <textarea class="form-control" id="comment" name="comment" ng-model="comment" placeholder="Tell us more"></textarea>
 	    <div class="help-block" ng-show="errors.comment">
 	      <p class="text-danger" ng-repeat="error in errors.comment">{{ error }}</p>
 	    </div>

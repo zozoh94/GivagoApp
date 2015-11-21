@@ -28,7 +28,8 @@ angular
     'toastr',
     'ipCookie',
     'ngFileUpload',
-    'ngImgCrop'
+    'ngImgCrop',
+    'oitozero.ngSweetAlert'
   ])
 
   .constant('apiUrl', apiUrl)
@@ -245,4 +246,16 @@ angular
     function getCanUrlValue(canUrl) {
       return angular.isFunction(canUrl) ? canUrl() : canUrl;
     }
-  }]);
+  }])
+  .factory('facebookService', function() {
+    return {
+      // jshint ignore:start
+      share: function(message) {
+	message = message.replace('@', '');
+	FB.login(function(){	  
+	  FB.api('/me/feed', 'post', {message: message, link: 'https://givago.co'});
+	}, {scope: 'publish_actions'});
+      }
+      // jshint ignore:end
+    };
+  });

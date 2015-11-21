@@ -8,7 +8,7 @@
  * Controller of the givagoApp's Player
  */
 angular.module('givagoApp')
-  .controller('PlayerCtrl', function ($window, $rootScope, $scope, $sce, $q, $state, $stateParams, account, ajax, toastr, ipCookie){
+  .controller('PlayerCtrl', function ($window, $rootScope, $scope, $sce, $q, $state, $stateParams, $modal, account, ajax, toastr, ipCookie, SweetAlert){
     if($rootScope.currentStep === 2) {
       $rootScope.currentStep = 3;
     }
@@ -72,9 +72,13 @@ angular.module('givagoApp')
       player.playVideo();
 
       angular.element($window).bind('blur', function () {
-        player.pauseVideo();
+	if(player.getCurrentTime() !== 0) {
+          player.pauseVideo();
+	}
       }).bind('focus', function () {
-        player.playVideo();
+	if(player.getCurrentTime() !== 0) {
+          player.playVideo();
+	}
       });
     });
 
@@ -91,7 +95,18 @@ angular.module('givagoApp')
       progressBar.stop();
       
       ajax.adSee($stateParams.ad, $stateParams.gift).success(function() {
-	swal({title : 'Thank you!', text : 'You\'re amazing! The World will thank you for that :)', type : 'success'}); // jshint ignore:line
+	SweetAlert.swal({
+	  title : 'Thank you!',
+	  text : 'You\'re amazing! <br/>The World will thank you for that :)',
+	  type : 'success',
+          confirmButtonColor: '#5CB85C', confirmButtonText: 'OK',
+          html: true
+	}, function() {
+	  $modal.open({
+	    templateUrl: 'share.html',
+	    controller: 'ModalCtrl'   
+	  });
+	});
 	$scope.loadAd();
 	player.stopVideo();
 	player.seekTo(0, false);

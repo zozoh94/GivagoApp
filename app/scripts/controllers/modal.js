@@ -7,9 +7,27 @@
  * # ModalCtrl
  * Controller of the givagoApp's main modal which deals with authentication
  */
-angular.module('givagoApp').controller('ModalCtrl', function ($rootScope, $scope, $auth, $window, $stateParams, $modalInstance, account, ajax, toastr){
+angular.module('givagoApp').controller('ModalCtrl', function ($rootScope, $scope, $auth, $window, $stateParams, $modalInstance, account, ajax, toastr, facebookService){
+  $scope.isCollapseShareFb = true;
+  $scope.message = '';
+  switch($stateParams.gift) {
+  case 'Tree':
+    $scope.message = 'Thanks to @Givago I\'ve just planted a tree for free! Plant your own on http://givago.co/';
+    break;
+  default:
+    $scope.message = 'Thanks to @Givago ! Give a gift on http://givago.co/';
+  }
 
   $scope.mode = 'login';
+
+  $scope.shareOnFacebook = function() {
+    facebookService.share($scope.message);
+    $modalInstance.close();
+  };
+
+  $scope.ignore = function() {
+    $modalInstance.close();
+  };
 
   $scope.authenticate = function(provider) {
     $auth.authenticate(provider)

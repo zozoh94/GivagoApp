@@ -28,5 +28,10 @@
     <loc>http://givago.co/give/Tree</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+    <url>
+    <loc>http://givago.co/about-us</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </url> 
 </urlset>  

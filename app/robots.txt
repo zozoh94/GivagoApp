@@ -2,11 +2,12 @@
 
 User-agent: *
 Sitemap: http://givago.co/sitemap.xml
-Allow: /
+Allow: /$
 Allow: /charities
 Allow: /sponsors
 Allow: /communities
 Allow: /legal
 Allow: /give/Tree
 Allow: /about-us
+Allow: /sitemap.xml
 Disallow: /

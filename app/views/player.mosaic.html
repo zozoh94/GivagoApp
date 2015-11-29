@@ -13,7 +13,7 @@
       <div class="tour third-step" ng-show="currentStep === 2 && pageLoaded">
 	<p><span class="label label-primary">3</span> Watch a short video<span ng-hide="startMode"> (Max 1 minute)</span>.</p>
 	<a class="btn btn-danger pull-right" ng-click="closeFeatureTour()"><span class="fa fa-check"></span> I got it!</a>
-      </div>            
+      </div>
       <ul class="list-unstyled video-list-thumbs row">
         <li ng-repeat="ad in ads" class="col-md-6">
           <a title="{{ ad.name }}" ui-sref="player({ gift: uiRouterState.params.gift, ad : ad.id })">

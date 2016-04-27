@@ -64,6 +64,8 @@ angular.module('givagoApp').controller('MosaicCtrl', function ($rootScope, $scop
       else {
 	$scope.apps = data;
       }
+    }).error(function() {
+      $scope.forceAds = true;
     });
   };
 

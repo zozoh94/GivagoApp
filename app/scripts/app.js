@@ -94,7 +94,7 @@ angular
 	resolve: {	  
 	  $title: function() { return 'Sponsors'; },
 	  $description: function() { return 'Givago is made for you! Contact us for more information. Together, let’s make a difference. We just need to start from somewhere.'; },
-	  $canUrl: function() { return 'http://givago.co/sponsor'; }
+	  $canUrl: function() { return 'http://givago.co/sponsors'; }
 	}
       })
       .state('charity', {
@@ -104,7 +104,7 @@ angular
 	resolve: {
 	  $title: function() { return 'Charities'; },
 	  $description: function() { return 'Givago wants to support charities! Please contact us if you have some projects, and together with the community we will try our best to help you.'; },
-	  $canUrl: function() { return 'http://givago.co/charity'; }	  
+	  $canUrl: function() { return 'http://givago.co/charities'; }	  
 	}
       })
       .state('community', {
@@ -114,7 +114,7 @@ angular
 	resolve: {
 	  $title: function() { return 'Communities'; },
 	  $description: function() { return 'Givago wants to support the community. So please contact us if you have any project, and together with the community we will try our best to turn it into a reality!'; },
-	  $canUrl: function() { return 'http://givago.co/community'; }
+	  $canUrl: function() { return 'http://givago.co/communities'; }
 	}
       })
       .state('mosaic', {

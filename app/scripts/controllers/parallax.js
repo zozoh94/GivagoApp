@@ -25,13 +25,13 @@ angular.module('givagoApp').controller('ParallaxCtrl', function ($rootScope, $sc
       return;
     }
     
-    var minHeight = playerPosition.top + $('.parallax-player').height() + 30;
+    //var minHeight = playerPosition.top + $('.parallax-player').height() + 30;
 
-    if(height < minHeight) {
+    /*if(height < minHeight) {
       height = minHeight;
-    }
+    }*/
 
-    $('#parallax-wrapper').height(height);
+    //$('#parallax-wrapper').height(height);
 
     var getSceneMargin = -($('#parallax-scene').css('marginTop').replace('px', '') * 2);
 

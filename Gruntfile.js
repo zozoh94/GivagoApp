@@ -21,6 +21,8 @@ module.exports = function (grunt) {
         dist: 'dist'
     };
 
+    var serveStatic = require('serve-static');
+
     var modRewrite = require('connect-modrewrite');
 
     // Define the configuration for all the tasks
@@ -79,12 +81,12 @@ module.exports = function (grunt) {
                     middleware: function (connect) {
                     return [
 			    modRewrite(['^[^\\.]*$ /index.html [L]']),                     
-                            connect.static('.tmp'),
+                            serveStatic('.tmp'),
                             connect().use(
                                 '/bower_components',
-                                connect.static('./bower_components')
+                                serveStatic('./bower_components')
                             ),
-                            connect.static(appConfig.app)
+                            serveStatic(appConfig.app)
                         ];
                     }
                 }
@@ -94,13 +96,13 @@ module.exports = function (grunt) {
                     port: 9000,
                     middleware: function (connect) {
                         return [
-                            connect.static('.tmp'),
-                            connect.static('test'),
+                            serveStatic('.tmp'),
+                            serveStatic('test'),
                             connect().use(
                                 '/bower_components',
-                                connect.static('./bower_components')
+                                serveStatic('./bower_components')
                             ),
-                            connect.static(appConfig.app)
+                            serveStatic(appConfig.app)
                         ];
                     }
                 }

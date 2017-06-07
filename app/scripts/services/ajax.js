@@ -3,8 +3,8 @@
 angular.module('givagoApp')
   .factory('ajax', function ($http, apiUrl) {
     return {
-      ads: function(/*page*/) {
-        return $http.get(apiUrl+'/ad/');//?page='+page);
+      ads: function(/*page*/limit) {
+        return $http.get(apiUrl+'/ad/?limit='+limit+'&random=true');//?page='+page);
       },
       ad: function(id) {
 	return $http.get(apiUrl+'/ad/'+id+'/');

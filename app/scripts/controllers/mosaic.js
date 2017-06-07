@@ -24,12 +24,13 @@ angular.module('givagoApp').controller('MosaicCtrl', function ($rootScope, $scop
     $rootScope.currentStep = 2;
   }
   
-  $scope.currentPage = 1;
-  $scope.totalPages = 0;
-
+  //$scope.currentPage = 1;
+  //$scope.totalPages = 0;
+  $scope.limit = 4;
+  
   var loadAds = function(){
-    ajax.ads(/*$scope.currentPage*/).success(function(data){
-      $scope.ads = data;
+    ajax.ads(/*$scope.currentPage*/$scope.limit).success(function(data){
+      $scope.ads = data.results;
       //$scope.totalPages = data.count;
       //$scope.sizePage = data.page_size;
       //$scope.loading = false;

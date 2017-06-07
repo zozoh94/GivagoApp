@@ -1,6 +1,6 @@
 'use strict';
 
-var apiUrl = 'https://api.givago.co';
+var apiUrl = 'http://api.givago.co';
 
 /**
  * @ngdoc overview
